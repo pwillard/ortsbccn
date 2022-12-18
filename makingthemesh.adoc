@@ -2,13 +2,12 @@
 
 == Making A 3D Model
  
-=== Some Basic Things About ORTS 3D Models.
+=== Some Basic Things About 3D Models.
 
-Scale:: ORTS as well as MSTS use a scale of 1:1, that is... by default, 1 unit in 3D drawing area is 1 meter in the simulator and in real-world measurements. 
+Scale:: {ORTS} as well as {MSTS} each use a scale of 1:1, that is, 1 unit in the 3D drawing area is 1 meter in the simulator and this means all things are in real-world measurements. 
  
 3D Space::  According to *Blender's view of the world*,  `-X` value is left, `+Z` value is up and a `-Y` value is the front side of the object. The "ground" level is where `Z`=0  
 
-Level Of Detail:: (LOD) Distance values at which the base model is replaced by reduced poly count shapes to account for the inability to see details at a distance.  Higher values should have less detailed models.  There are no hard rules about LOD ranges, but you should try to use them.
 
 [WARNING]
 When creating rolling stock items for ORTS, Pressing kbd:[Keypad 1] for front view will actually have you looking at the REAR end of the car or engine. You would press kbd:[CTRL, Keypad 1] to get a front view of your engine or wagon while drawing it.  You have the potential to create backwards rolling stock if you get this wrong.
@@ -25,7 +24,7 @@ While you _can_ have Blender work in Imperial units (feet and inches), I find it
 
 Some recommendations From Erick Cantu of NAVS
 
-1. You should strive to keep the poly count down even though its a lot less critical in {OR}.  While it is nice that modern PC's and simulator software have gotten much better about handling complex models and textures, it doesn't mean go hog wild.  Use complexity where complexity counts. In BLENDER, you can see these details such as vertex and poly count in the lower right of the screen in `Object EDIT MODE`.  You should avoid keeping faces and edges that will Seldom or never be seen in the model.
+1. You should strive to keep the poly count down even though its a lot less critical in {OR}.  While it is nice that modern PC's and simulator software have gotten much better about handling complex models and textures, it doesn't mean go hog wild.  Use complexity where complexity counts. In Blender, you can see these details such as vertex and poly count in the lower right of the screen in `Object EDIT MODE`.  You should avoid keeping faces and edges that will Seldom or never be seen in the model.
 
 2. Keep the texture files (that will eventually be included with your final model) to a minimum and use as much of the allotted texture as you can.  Each texture creates a fresh API call (state change) to a new group versus being able to batch calls together to a single texture.
 
@@ -40,12 +39,12 @@ For large panels, though, a minimal amount of modeling is necessary. A flat plat
 
 
 
-=== Preparation Work
+=== Preparation of Work
 
-* Figure out what you want to model
-* Find design references (Blueprints, Scale Drawings). Referring to back issues of model railroading magazines can be helpful.  There are also some railroad cyclopedia books for sale that were published by Model Railroader Magazine as well as issues of Railroad Model Craftsman. 
+* Of course, you need to figure out what you want to model
+* Find some design references (Blueprints, Scale Drawings). Referring to back issues of model railroading magazines can be helpful.  There are also some railroad cyclopedia books for sale that were published by Model Railroader Magazine as well as issues of Railroad Model Craftsman. 
 * Create a collection of reference images, if doing modern content, grab your camera and snap some of your own references. There are a few railroad picture sites that are highly useful as well. (https://www.railpictures.net/, http://www.rr-fallenflags.org/, https://www.railcarphotos.com/) 
-* Determine which images you will use for background references in BLENDER.  You should have available at least side and front images.  In some situations, you can use the same image for both if the views are present.  
+* Determine which images you will use for background references in Blender.  You should have available at least side and front images.  In some situations, you can use the same image for both if the views are present.  
 
 
 
@@ -73,30 +72,50 @@ image:images/alco_4_6_4_f7_1937-86137.jpg[]
 Using background images is optional, but many modelers use blueprint backgrounds as modeling aids.
 
 
-When inserting background reference drawings into BLENDER, it is not critical that you match up the image size to equal world space dimensions, but it can save a lot of re-scaling steps later.  If modeling a freight car, for example, figure out the distance between truck centers in meters and match the background drawing using the up using the grid in the 3D view by using the kbd:[S].
+When inserting background reference drawings into Blender, it is not critical that you match up the image size to equal world space dimensions, but it can save a lot of re-scaling steps later. One of the main issues with using backgrounds in Blender is that some methods you might be accustomed to with other modeling tools don't work in Blender, such as applying backgound image to a cube and using that as your reference, since in Blender, you only see the texture in a texture viewing mode. It will dissapear in Xray/Wireframe and even solid shading modes. 
+
+When you insert a background using Blender's menu:Add[Image > Background],  the image WILL show up while you are in wireframe modes... but note that by default the image will ONLY be visible from the axis it faces. Be careful when you install a background image as you need to to be in the Axis View you want, since the added image will orient itself to your current view.  If you want to change this, you can enable the `Perspective View` check-box by clicking on the `EMPTY` and adjusting the setting it's properties window.
+
+Background images are added to our scene as `EMPTIES`, which means that they are not going to be part of an exported model.  To avoid accidently moving or changing the background image, you can use the filter options in the outliner, first enabling the "mouse cursor" icon and then setting the restriction toggles to disable the "mouse cursor" icon for the empties you added to the list, which will prevent you from accidently selecting the background images.
+
+The outliner filter options are pretty handy as you can also SHOW or HIDE the background image empties as needed by clicking the "eye" Icon.
+
+A nice feature of the Image Background is the ability to adjust the ALPHA setting, controlling the with the "transparency" slider  to get a see-through effect.  First, click the Opacity check-box  to enable the feature and then adjust the opacity slider to your liking.
+
+image:images/Background1.PNG[align=center]
 
 [TIP]
-Blender has an add on that you can install called "Insert Images as planes" that is a bit more versatile than "Add Image Background" option.
+If you want to save the background images INTO your .Blend file, you can use the menu:File[External Data > Automatically Pack Reources], which is OFF by default.
+
+
+When using background images and modeling a freight car, for example, you would first figure out the distance between truck centers in meters and match the background drawing scale using the grid in the 3D view.  Adjust the background image scale using the kbd:[S] and position using kbd:[G]. 
+
+
+
+[TIP]
+Speaking of working with images, Blender has an add on that you can install called "Insert Images as Planes" that is a bit more versatile than "Add Image Background" option. The ADD menu will now have this option available.  It will assign the material of the image to the plane and allow you to rely on things like ALPHA masking and is affected by scene lighting, but like I mentioned above, it will only show up in a TEXTURE view mode, so is not usefull for a background refrence drawing. 
+
+
 
 
 === Some things I will miss about using 3D Canvas
 
 I will digress for a moment to share one of the reasons why using 3D CANVAS was so helpful in the initial stages of making a model.
 
-3D Canvas/Crafter has a train content ENGINEER add-on `Trainworks -> Train Simulator Engineer` that behaves as a quick start tool which places fully modeled wheels, axles and truck shapes and the base body element, all of which are customizable.  This add-on is sorely missed in BLENDER as nothing even close to it exists.  In reality though, it only saves you a few minutes.  If you have a ready made truck-set and couplers, for example, it is pretty easy to import and place them at the correct location. 
+3D Canvas/Crafter has a train content ENGINEER add-on `Trainworks -> Train Simulator Engineer` that behaves as a quick start tool which places fully modeled wheels, axles and truck shapes and the base body element, all of which are customizable.  This add-on is sorely missed in Blender as nothing even close to it exists.  In reality though, it only saves you a few minutes.  If you have a ready made truck-set and couplers, for example, it is pretty easy to import and place them at the correct location. 
 
 image:images/3dengineer.PNG[]
 
 [TIP]
-Blender 3.0 has a new Asset Library feature where you can store pre-made objects and textures that are shared among your projects.  A perfect place to store various Bogies, Couplers and other common objects.
+Blender 3.0 has a new Asset Library feature where you can store pre-made objects and textures that are shared among your projects.  A perfect place to store various pre-made Bogies, Couplers and other common objects.
 
 image:images/Result.PNG[library.png]
 
-Since this is really just a set of preset shapes with customizable values and locations, it's not impossible to consider that BLENDER's scripting language could be used to recreate the same tool using Python.  While I'm not in any position to create this BLENDER Script myself, it would be a welcome sight to see one or literally any thing else {OR} related beyond the existing S File Exporter we have from Wayne Campbell.
+Since this is really just a set of preset shapes with customizable values and locations, it's not impossible to consider that Blender's scripting language could be used to recreate the same tool using Python.  While I'm not in any position to create this Blender Script myself, it would be a welcome sight to see one or literally any thing else {OR} related beyond the existing `.S` File Exporter we have from Wayne Campbell.
 
 image:images/Result.PNG[]
 
-Using this plugin with 3D Canvas we haven't even started modelling yet and we have a number of things in place.  In BLENDER, however we are going to have to create all of this by ourselves.
+Using this plugin with 3D Canvas we haven't even started modelling yet and we have a number of things in place.  In Blender, however we are going to have to create all of this by ourselves.
 
 <<<
 
@@ -104,18 +123,16 @@ Using this plugin with 3D Canvas we haven't even started modelling yet and we ha
 
 I feel like we can try to make a simple scenery object as a first project and try to make it by manipulating the default cube. 
 
-==== Wait... Do we need a quick 3D Modeling primer?
+==== Do we need a quick 3D Modeling primer?
 
-One thing I didn't mention until now is that BLENDER has a very unique style of interface. (Versions prior to 2.80 were even more unique) It will take time and practice to become acclimated to the user interface.  The BLENDER concept is that  you will spend a lot of time with your right hand on the mouse and your left hand typing keyboard shortcuts.
+A basic Blender concept is that  you will spend a lot of time with your right hand on the mouse and your left hand typing keyboard shortcuts. Blender is very much still a key-based program, though in recent releases with the additional of optional pie-menus and onscreen widgets, you can initiate quite a number of operations with just the mouse or a single key press and the mouse.
 
-BLENDER is very much still a key-based program, though in recent releases with the additional of optional pie-menus and onscreen widgets, you can initiate quite a number of operations with just the mouse or a single key press and the mouse.
+Every piece of 3D software I've used is based on a set of core concepts and constructs.  These are often called primitives and Blender is loaded with them.  By far, the most used primitive when creating new hard surface models is the `cube` closely followed by the `cylinder` and `plane`.  Blender refers to these items as "mesh objects".  
 
-Every piece of 3D software I've used is based on a set of core concepts and constructs.  These are often called primitives and BLENDER is loaded with them.  By far, the most used primitive when creating new hard surface models is the `cube` closely followed by the `cylinder` and `plane`.  BLENDER refers to these items as "mesh objects".  
-
-By adjusting the scale, rotation, position or by adding to or subtracting from the faces, vertices and edges of these primitives, we can create the various adjustments and transformations needed to create a particular shape.   It is honestly a bit overwhelming at first. The only way to learn how to become better and faster a is *not* by watching or reading tutorials, but rather by just "doing it".  
+By adjusting the scale, rotation, and location or by adding to or subtracting from the faces, vertices and edges of these primitives, we can create the various adjustments and transformations needed to create a particular shape.   It is honestly a bit overwhelming at first. The only way to learn how to become better and faster a is by *not* only watching or reading tutorials, but by just "doing it" in Blender yourself.  
 
 [NOTE]
-So, of course I mean that you should watch and read tutorials to get better acquainted with BLENDER features. However, you are still going to need to just try and make a few things yourself. For example, my first real export into {or} was a 12' long Jersey style concrete barrier.  Nice and simple.
+So, of course I mean that you should watch and read tutorials to get better acquainted with Blender features. However, you are still going to need to just try and make a few things yourself. For example, my first real export into {or} was a 12' long Jersey style concrete barrier.  Nice and simple.
 
 image:images/barrier.png[]
 
@@ -123,7 +140,7 @@ image:images/barrier.png[]
 [TIP]
 My experience has been that I begin to work on something with the complete understanding that I will trash it, or some of it, as I discover a better way to do it.
 
-As I said, BLENDER isn't the easiest program to learn, but even a first-week novice should be able to produce a simple model like the one above using a few fundamental commands: 
+As I said, Blender isn't the easiest program to learn, but even a first-week novice should be able to produce a simple model like the one above using a few fundamental commands: 
 
 [cols="30,70", options="header"]
 |===
@@ -148,10 +165,10 @@ Example::  By pressing the sequence:  kbd:[G] kbd:[SHIFT] kbd:[X] you will be ab
 
 === The Modeling Interface
 
-This is the initial default screen layout you will see when you start up BLENDER. 
+This is the initial default screen layout you will see when you start up Blender. 
 
 [NOTE]
-For added clarity on printed copies of this document, I’ve switched to a high contrast theme in BLENDER Preferences.  (Prefereces-->Themes-->Presets[Pulldown for options])
+For added clarity on printed copies of this document, I’ve switched to a high contrast theme in Blender Preferences.  (Prefereces-->Themes-->Presets[Pulldown for options])
 
 image:images/mainscreen.png[]
 
@@ -190,16 +207,16 @@ The Number Pad Keys are also used to select various views.
 ==== View Controls
 
 [NOTE] 
-There is a check-box option in `Preferences-->Input-->Emulate 3-Button Mouse` for people who do not have a Middle Mouse Button.  To create a Middle Mouse Button press while this mode is enabled, you hold kbd:[ALT] while pressing the `LMB`.  There is also a checkbox to EMULATE the number pad for systems that lack a keypad. This option will enable the number pad key mapping on the TOP ROW number keys instead. (This will affect some options, like switching edit modes for vertex, line and face) 
+There is a check-box option in `Preferences-->Input-->Emulate 3-Button Mouse` for people who do not have a Middle Mouse Button.  To create a kbd:[MMB] press while this mode is enabled, you hold kbd:[ALT] while pressing the kbd:[LMB].  There is also a checkbox to EMULATE the number pad for systems that lack a keypad. This option will enable the number pad key mapping on the TOP ROW number keys instead. (This will affect some options, like switching edit modes for vertex, line and face) 
 
-Orbiting:: Select the default cube and press and hold your middle mouse button, `MMB`.  Moving the mouse right and left, you will orbit your view around the selected object.  
+Orbiting:: Select the default cube and press and hold your middle mouse button, kbd:[MMB].  Moving the mouse right and left, you will orbit your view around the selected object.  
 
-Panning:: Select the default cube and press and hold your `MMB` and then press the kbd:[SHIFT] key. Moving left and right will PAN left and right on the screen view.
+Panning:: Select the default cube and press and hold your kbd:[MMB] and then press the kbd:[SHIFT] key. Moving left and right will PAN left and right on the screen view.
 
-Snapping:: Select the default cube and press and hold `MMB`, then press the kbd:[ALT] key and by moving left, right, up, down you will snap the screen to various orthographic views.
+Snapping:: Select the default cube and press and hold kbd:[MMB], then press the kbd:[ALT] key and by moving left, right, up, down you will snap the screen to various orthographic views.
 
 
-Zoom:: Select the default cube and press and hold `MMB` and then press the kbd:[CTRL] key. Moving up, down will zoom the views in and out.
+Zoom:: Select the default cube and press and hold kbd:[MMB] and then press the kbd:[CTRL] key. Moving up, down will zoom the views in and out.
 
 Camera View:: Pressing the kbd:[0/INS] key on your keypad will toggle the Camera View. In this view, you will see what the camera sees of your screen which is also what your render will output.
 
@@ -219,7 +236,7 @@ Toggle Perspective and Orthographic view modes:: kbd:[Keypad 5]
 
 
 [TIP]
-Most of the time, you will be using the default `BOX SELECT` mode of the Arrow (Select) tool.  Use the kbd:[B] to switch back to `BOX SELECT` if you end up changing it from default. Other modes include `CIRCLE SELECT` kbd:[C] (Note, use `RMB` to exit `CIRCLE SELECT` mode), and `LASSO SELECT` kbd:[CTRL,RMB].  The kbd:[W] key will cycle between modes sequentially.  You can also *INVERT* selections by using  kbd:[CTRL,I] and add to an existing selection by holding kbd:[SHIFT] and selecting with `LMB`.
+Most of the time, you will be using the default `BOX SELECT` mode of the Arrow (Select) tool.  Use the kbd:[B] to switch back to `BOX SELECT` if you end up changing it from default. Other modes include `CIRCLE SELECT` kbd:[C] (Note, use `RMB` to exit `CIRCLE SELECT` mode), and `LASSO SELECT` kbd:[CTRL,RMB].  The kbd:[W] key will cycle between modes sequentially.  You can also *INVERT* selections by using  kbd:[CTRL,I] and add to an existing selection by holding kbd:[SHIFT] and selecting with kbd:[LMB].
 
 image:images/Arrow.JPG[align="center", caption="Box Select"]
 *BOX SELECT ICON*
@@ -234,11 +251,11 @@ image:images/screenGismoJPG.JPG[]
 <<<
 === Modeling Modes
 
-In BLENDER, there are 2 primary 3D model manipulation modes.  These are `OBJECT MODE` and `EDIT MODE`.   
+In Blender, there are 2 primary 3D model manipulation modes.  These are `OBJECT MODE` and `EDIT MODE`.   
 
 Use the kbd:[TAB] key to switch modes.
 
-`OBJECT MODE`:: With `OBJECT MODE`, which is the default mode in BLENDER, actions are available for all object types since this mode is dedicated to Object data-block editing (e.g. position, rotation, size) as well as Modifiers.  Edges, Faces and Vertices cannot be modified in this mode.
+`OBJECT MODE`:: With `OBJECT MODE`, which is the default mode in Blender, actions are available for all object types since this mode is dedicated to Object data-block editing (e.g. position, rotation, size) as well as Modifiers.  Edges, Faces and Vertices cannot be modified in this mode.
 
 image:images/objectmode.PNG[]
 
@@ -267,9 +284,9 @@ image:images/editmode.PNG[]
 In Edit mode, the following shortcut keys are useful:
 
 Use kbd:[1] Vertex Mode.
-Use kbd:[1] Edge Mode.
+Use kbd:[2] Edge Mode.
 Use kbd:[3] Face Mode.
-Use kbd:[P] Create Separate object from selection.
+Use kbd:[P] Create Separate objects from the selection in various ways.
 Use kbd:[F] Fill Face.
 
 
@@ -282,7 +299,7 @@ There are 3 sub-modes in `EDIT MODE`; kbd:[1] Vertex Edit, kbd:[2] Edge Edit and
 === The 4 major edit-mode tools you are likely to use the most are listed below.
 
 [NOTE]
-There are now thousands of YouTube videos about modeling in in BLENDER if any of these concepts mentioned here are not clear.
+There are now thousands of YouTube videos about modeling in in Blender if any of these concepts mentioned here are not clear.
 
 ==== EXTRUDE
 image:images/extrusion.jpg[]
@@ -361,7 +378,7 @@ image:images/loopcut.png[]
 ====
 You have a way to set some custom options that you always change and then save that as default to avoid having to perform those changes when you start a new project.
 
-The default workspace in BLENDER 2.8+ is something you will see in a lot of in YouTube tutorial videos. The first thing they will often do is select and then delete the "default cube".  Rather than go through this every time, it is possible for you to delete it, and then save your current cube-less `.blend` file as your new startup file. (I don't recommend it though) 
+The default workspace in Blender 2.8+ is something you will see in a lot of in YouTube tutorial videos. The first thing they will often do is select and then delete the "default cube".  Rather than go through this every time, it is possible for you to delete it, and then save your current cube-less `.blend` file as your new startup file. (I don't actually recommend it though) 
 
 
 `FILE->DEFAULT->Save Startup File`
@@ -372,12 +389,12 @@ Before you do that just yet, go over to your `Outliner` window... and do the fol
 
 image:images/CustomSettings.PNG[]
 
-1. Create a new collection by clicking the box icon in the upper right with a plus sign on it. Create a new collection called `MAIN`. (All uppercase)
-2. Click the new collection `MAIN` and then create a new collection so it becomes a child collection under `MAIN` and call it `MAIN_0700` for LOD distance, or use an LOD distance value that makes good sense to you. 
-3. Now  click on `SCENE COLLECTION` at the top and create two new collections, call one `Camera` and the other `Lights`.
-4. Drag and Drop the light OBJECT from 'Scene Collection' into `Lights` and then Drag and Drop the Camera object into `Camera`.
+1. Create a new collection by clicking the `box icon` in the upper right `Collections` window with a plus sign on it. Create a new collection called `MAIN`. (All uppercase)
+2. Click the new collection `MAIN` and then create a new `Collection` again so it becomes a child collection under `MAIN` and call it `MAIN_0700` for LOD distance, or use any LOD distance value that makes good sense to you. 
+3. Now click on `SCENE COLLECTION` at the top and rename the original main collection to `Camera`.
+4. Drag and Drop the Camera object into `Camera`.
 5. Now you can save your `.blend` file as your default startup file and you will have the scene outline setup that will work with the MSTS exporter.
-6. Optional: If you are going to use the default cube, drag it from where it is to the MAIN collection.
+6. Optional: If you are going tocontinue to use the default cube, drag it from where it is to the MAIN_0700 collection.
 
 
 [TIP]
@@ -386,10 +403,10 @@ You would later create as many LOD based MAIN_xxxx collections as needed for you
 image:images/MyCollection.JPG[]
 
 [TIP]
-You can also go to the `SYSTEM` section in `Preferences` and increase your number of UNDO steps to 200.  Under `Themes->3d ViewPort`, you can scroll to the bottom and make your vertex sizes larger so they can be more easily seen. I normally use 5 for Vertex Size and `Face Dot Size`.  You can also adjust the color of the selected object and active object to make them stand out more.
+If you have not already done so, you can also go to the `SYSTEM` section in `Preferences` and increase your number of UNDO steps to 200 or more.  Under `Themes->3d ViewPort`, you can scroll to the bottom and make your vertex sizes larger so they can be more easily seen. I normally use 5 for Vertex Size and `Face Dot Size`.  You can also adjust the color of the selected object and active object to make them stand out more.
 
-[NOTE]
-You will also want to download and unzip the "BLENDER 2.8 to MSTS Exporter" from Elvas Tower and then read the instructions on how to install it. It also includes very fine instructions on how to use it.
+[IMPORTANT]
+You will also want to download and unzip the "Blender 2.8 to MSTS Exporter" from Elvas Tower and then read the instructions on how to install and use it. It includes very fine PDF file with instructions on how to use it.
 
 
 
@@ -401,32 +418,33 @@ This is a quick tutorial on general model building.   To get started, we are mak
 
  * We are building a very simple shape without using a background image.
  * We only need a few general dimensions.  
- * We will re-make my first BLENDER project for MSTS;  The Jersey Barrier, 12', by 42" by by 32". 
+ * We will re-make my first Blender project for MSTS;  The Jersey Barrier, 12', by 42" by by 32". 
 
 Key items to take away from exercise #1
 
 * Object and View Manipulation
 * Basic Edit Tools
-* UV Texture Mapping
+* Quick UV Texture Mapping
 
 
 [NOTE]
-Again, for added clarity on printed copies of this document, I’ve switched to a high contrast theme in BLENDER Preferences. 
+For added clarity on printed copies of this document, I’ve switched to a high contrast theme found in Blender Preferences. 
 
-* Start with the default cube, and select it with `LMB`.
+* Start with the default cube, and select it with kbd:[LMB].
 * Shift it up 1 meter. kbd:[G] kbd:[Z] kbd:[1] kbd:[ENTER]
 * As an aid to modeling, pull out the right side number panel by pressing kbd:[N] 
-* Scale to 42"  (Z Height = 1.077m)  Press kbd:[S] kbd:[Z] and drag mouse to the correct size in the Z dimension or manually enter 1.07 in the Z dimension field.
-* Shift it back to ground level.  kbd:[Keypad 3] on keypad for side view, kbd:[G] key kbd:[Z], drag down to about ground level (Roughly: Locaton 0.52m in Z axis)
+* Scale to 42"  (Z Height = 1.077m)   Manually enter 1.07 in the Z dimension field.
+* Shift it back to ground level.  kbd:[Keypad 3] on keypad for side view, kbd:[G] key kbd:[Z], drag down to about ground level (Roughly: Locaton 0.52m in Z axis if you manually enter the `Z` position)
 
 image:images/JB0.JPG[]
 
-* Adjust your view so you can see the `Y` axis kbd:[MMB,DRAG] (Or press Y in the axis gizmo on the upper right)
-* Adjust cube length to 12', (3.6576m) by using kbd:[G] kbd:[Y] and dragging, or by manually entering 3.6576 in the Y Dimension field 
+* Adjust your view so you can see the `Y` axis kbd:[MMB,DRAG] left to right (You can press "Y" in the axis gizmo on the upper right or use kbd:[KEYPAD 3]) 
+* Adjust cube length to 12', (3.6576m) by using kbd:[G] kbd:[Y] and dragging, or by manually entering 3.6576 in the `Y` Dimension field 
 * Switch to front view and adjust `X` width to 32" (0.8128m) kbd:[Keypad 1] then kbd:[S] kbd:[X] and kbd:[DRAG] or enter .8128 in the `X` Dimension field. 
 
 image:images/JB1.JPG[]
 
+* Choose menu:Object[Apply Scale]
 
 * With the `CUBE` still selected, switch to `EDIT MODE` using the kbd:[TAB] KEY. 
 
@@ -444,11 +462,6 @@ image:images/JB2.JPG[]
 
 * Go back to `SELECT` Mode by clicking the Arrow icon if its not already selected since we are done with `LOOP CUTS` for now.
 
-* Before we do anything else, we need to null the scale factor as all operations take the current object scale into account.  kbd:[TAB] back to `OBJECT MODE`, select `OBJECT->APPLY->SCALE`.  All the scale values will shift to 1.0000.  
-
-* Go back to `EDIT MODE` with the kbd:[TAB]
-
-
 [TIP]
 In these next steps,  we will be using Vertex `EDIT MODE`. From the front view,  we will DELETE the vertices on the left side of the object because we are going to use the Mirror Modifier to create a symmetrical object.  
 
@@ -464,7 +477,7 @@ image:images/VEF.png[]
 
 image:images/oops1.JPG[]
 
-* Press kbd:[X] for Delete and in the pop-up window, choose to `Delete - Vertices`.  BLENDER will delete the selected vertices. Wait... What just happened?
+* Press kbd:[X] for Delete and in the pop-up window, choose to `Delete - Vertices`.  Blender will delete the selected vertices. Wait... What just happened?
 
 It didn't perform a delete?   Oh my, yes it did, but not what we wanted!
 
@@ -477,7 +490,7 @@ Do you understand what happened?  We only selected the FRONT facing vertices! We
 
 * Make sure you are in vertex select mode kbd:[1], and also in the front view kbd:[1] we will remove the left side vertices. Press the kbd:[Z] key and select `WIREFRAME`,  Press kbd:[Keypad 1], and then kbd:[1] on the keyboard to select front view & vertex mode. You should see your vertex dots and the model will look transparent now and not solid.  
 
-* Now, `BOX` select the vertices on the left side, like before.  (They will change to the SELECTED color) and  press kbd:[X] and choose to Delete Vertices.  BLENDER will delete the selected vertices. Now, you will finally only see 1/2 of your object remaining.
+* Now, `BOX` select the vertices on the left side, like before.  (They will change to the SELECTED color) and  press kbd:[X] and choose to Delete Vertices.  Blender will delete the selected vertices. Now, you will finally only see 1/2 of your object remaining.
 
 image:images/MIRROR1.JPG[]
 
@@ -488,20 +501,20 @@ image:images/MIRROR1.JPG[]
 
 image:images/JB3.JPG[]
 
-* `TAB` back to `EDIT MODE`.  Note that you should now only see Vertex dots on the right side of the object, but you see the full shape.  It's mirrored now, and whatever you do on the right side gets mirrored to the left side.
+* `TAB` back to `EDIT MODE`.  Note that you should now only see Vertex dots on the right side of the object, but you will see the full shape with the mirrored side visible.  It's mirrored now, and whatever you do on the right side gets mirrored to the left side.
 
 image:images/JB35.JPG[]
 
 * Select the top 2 right side vertices and press kbd:[G] kbd:[X] to shift them inward until you get about a 55 degree angle.
 
-* Repeat the same process with just the top right vertices until you get an 84 degree angle.
+* Repeat the same process with just the top right vertices until you get about an 85 degree angle.
 
 image:images/JB4.JPG[]
 
 So now we have a basic shape of the concrete barrier.  The next steps will complete the shape.
 
 [NOTE]
-We can go back to ViewPort SOLID mode now.
+We can go back to `ViewPort SOLID` mode now.
 
 image:images/Barrier-300x225.jpg[]
 
@@ -519,16 +532,19 @@ image:images/apply2.png[]
 
 
 [NOTE]
-When you apply a modifier, you lose the ability to adjust it.  Prior to applying it, you can still make adjustments.  In our case, were were done with making a symmetrical object, so it was OK to apply it. 
+When you apply a modifier, you lose the ability to adjust it further.  Prior to applying it, you can still make adjustments to the shape.  In our case, were were done with making a symmetrical object, so it was `OK` to apply the modifier. 
 
 
 
 * Now, kbd:[TAB] back to EDIT MODE and select the EDGE select mode with kbd:[2] key.   
 
-* We will select the visible edges of the shape.  You will need to `SELECT` multiple `EDGES` so here is what we will do. Hold kbd:[SHIFT] then select the TOP LEFT Edge, you will need to shift your view with the middle mouse button to get a good viewpoint for selection. The TOP EDGE will be selected... Now click the remaining "outside" edges while still holding kbd:[SHIFT]. 
+* We will select the visible edges of the shape.  You will need to `SELECT` multiple `EDGES` so here is what we will do. Hold kbd:[SHIFT] then select the TOP LEFT Edge, you will need to shift your view with the kbd:[MMB] to get a good viewpoint for selection. The TOP EDGE will be selected... Now click the remaining "outside" edges while still holding kbd:[SHIFT]. 
 
 [NOTE]
 This creates a selection group. If you left click an edge again without holding kbd:[SHIFT], you will lose the selection group and will need to reselect all the desired edges again. 
+
+[TIP]
+If you hold kbd:[ALT] + kbd:[SHIFT] you will select all connected `edges` at once.  It often will select more than you actually need, so you might need additional kbd:[LMB] to unselect unwanted edges.
 
 image:images/outside.JPG[]
 
@@ -550,7 +566,7 @@ If we look at the object back in OBJECT MODE with the Solid Viewport Shader, we 
 
 === Texturing
 
-The goal with texturing is to be able to apply a 2 dimensional bitmap to a 3 Dimensional object. Its rather tricky and there are multiple ways to do it.  The easiest is to just Mark Seams and then UNWRAP the object, then moving the resulting `UV Islands` into position on your bitmap. 
+The goal with texturing is to be able to apply a 2 dimensional bitmap to a 3 Dimensional object. Its rather tricky and there are multiple ways to do it.  The easiest is to just `Mark Seams`` and then UNWRAP the object, then moving the resulting `UV Islands` into position on your bitmap. 
 
 [NOTE]
 While I say it is the easiest way here, that is a bit misleading.  Sometimes, using the `Mark Seams` and `Unwrap` steps create more work for texture creation than is reasonable.  Especially if the object is complex but non-organic, like a Boxcar, Engine or Building. 
@@ -563,7 +579,7 @@ image:images/TextureSet.png[]
 
 ==== Let's Begin Texturing
 
-`Marking Seams`:: You would mark seams (Edges) where flat edges stop and in the case of our Jersey Barrier model, we mark TOP, BOTTOM, FRONT, BACK and both SIDES by selecting all relevant edges and then use `EDGE->MARK SEAM` to define seams.  These will now highlight in the SEAM COLOR.
+`Marking Seams`:: You would Mark Seams (Edges) where the flat edges stop and in the case of our Jersey Barrier model, we mark TOP, BOTTOM, FRONT, BACK and both SIDES by selecting all relevant edges and then use `EDGE->MARK SEAM` to define seams.  These will now highlight in the SEAM COLOR.
 
 image:images/markedseams.png[]
 
@@ -578,33 +594,33 @@ image:images/uvedit1.png[]
 [WARNING]
 If nothing happens in the left `UV EDIT` window, you probably didn't have everything selected. 
 
-* Now, before you do anything else, locate the `UNWRAP`  tab at the bottom of the screen and adjust the margin to be a value of 0.05.  The default 0.001 is just too small for our needs. This will give a greater separation between te generated UV Islands.
+* Now, before you do anything else, locate the `UNWRAP`  tab that showed up at the bottom of the screen and adjust the `Margin` to be a value of 0.05 or 0.08.  The default value 0.001 is just too small for our needs. This will give a greater separation between te generated UV Islands.  we will want to move them around.
 
 image:images/unwrap0.png[]
 
-* Give your model a new material. In the `PROPERTIES` window on the right side, locate the sphere with a grid inside it near the bottom of the side menu.  That is the material panel. 
+* Give your model a new material. In the `PROPERTIES` window on the right side, locate the sphere with a grid inside it near the bottom of the Properties window.  That is the material panel. 
 
-* Your object likely received a default empty material. Let's update it.  Under `SURFACE PROPERTIES`, Click the small circle on the right side of the `BASE COLOR` field.  You will get a list of options.   
+* Your object likely received a default empty material. Let's update it.  Under `SURFACE PROPERTIES`, Click the small circle on the left side of the `BASE COLOR` field.  You will get a list of options.   
 
-* Choose  `Image Texture` and we will locate the Concrete texture we will use. (You can create your own or use the one I created for this)  
+* Choose  `Image Texture` and we will thhen locate the Concrete texture we will use. (You can create your own or use the one I created for this)  You should have some texture file ready in advance.
 
-* Under `BASE COLOR` you now see `+NEW` and `OPEN` icons.  Click `OPEN` and chose your existing texture file. The `UV SQUARE` background image in the UV Window should now display your image behind your `UV ISLANDS`.
+* Under `BASE COLOR` you now see `+NEW` and `OPEN` icons.  Click `OPEN` and chose your existing texture file. The `UV SQUARE` background image in the UV Window should now display your image behind your `UV ISLANDS`.  If you choose `NEW`, you will have a blank image assigned to the material, which in this case is not helpful.
 
 [NOTE]
 The GITHUB page has a DEMO1.ZIP file that contains the concrete texture I used.
 
 image:images/UVWRAP1.JPG[]
 
-* The task now is to arrange the UV ISLANDS (Using the standard tools kbd:[G] kbd:[X],  kbd:[G] kbd:[Y] keys as well as resizing with kbd:[S] and rotate with kbd:[R] )  You can temporarily shift islands outside the 1x1 UV SQUARE, but by the end of this process, all of the islands will be back within the texture space.  
+* The task now is to arrange the UV ISLANDS (Using the standard tools kbd:[G] kbd:[X],  kbd:[G] kbd:[Y] keys as well as resizing with kbd:[S] and rotate with kbd:[R] )  You can temporarily shift islands outside the 1x1 UV SQUARE, but by the end of this process, all of the islands will need to be back within the 1x1 texture space.  
 
 [TIP]
-When editing UV Coordinates, the X axis is left-right and the Y axis is up-down.
+When editing UV Coordinates, the `X` axis is left-right and the `Y` axis is up-down.
 
-* Because we added some space between islands, they should be much easier to grab, rotate and place on the background. I recommend moving ALL UV islands outside the space and moving them back in 1 at a time.  If you enable the `Double Arrow` icon in the `UV WORKSPACE`, updates will be reflected in both workspaces.
+* Because we added some space between islands, they should be much easier to grab, rotate and place on the background. I recommend moving ALL UV islands outside the space and moving them back in 1 at a time.  If you enable the `Double Arrow` icon in the `UV WORKSPACE`, updates will be reflected in both workspaces so you can see what you are doing in real-time.
 
 * You can select faces in the `EDIT` window to isolate them in the `UV` window or use the kbd:[L] key to select linked faces.
 
-* In this specific case, we will overlap the Left and the Right Side on the same texture space.  When appearance is not critical, this works out just fine.
+* In this specific case, we will overlap the Left and the Right Side on the same texture space.  When appearance is not critical, this works out just fine. Unlike 3DC, there is no "paint" with defined UV coordinates option.
 
 What I ended up with is shown below.  Yours will likely be different based on what you marked as seams and how you laid out the islands. Again, its not critical with this type of model.
 
@@ -650,18 +666,19 @@ The MSTS Materials shader properties provided by the exporter follow the standar
 
 * Update the `BaseColorFilePath` (using the Folder Button) to select the texture of the highlighted object we have been working on. 
 
-* Now switch to the `SHADING` window using the top menu bar.  Note that the NODES now has a UVMap node and the text field says "UVMap".  This is needed for the MSTS `S` file export.
+* Now switch to the `SHADING` window using the top menu bar.  Note that the `NODES` window now has a `UVMap` node and the text field says "UVMap".  This is needed for the MSTS `S` file export.
 
 * With this verified, you can now use the MSTS exporter.
 
-* `FILE->EXPORT-OPENRAILS/MSTS(s)` file, and choose where to save. Use the browser to select your projects `\final\` folder and modify the filename as needed... `barrier.s` for example.  The bottom of the screen will say "Finished OK" when done.
+* Chose menu:FILE[EXPORT > OPENRAILS/MSTS(s)] file, and choose where to save. Use the browser to select your project's `\final\` folder and modify the filename as needed...  I chose `barrier.s` for example.  The bottom of the screen will say "Finished OK" when done.
 
-* The exporter will ONLY create the `.S` file and assume your texture is `.ace`.  Converting your `.JPG` or `.PNG` textures to `.ACE` (or .`DDS` ) remains for you do will need to do manually.
+* The exporter will ONLY create the `.S` file and assume your texture is `.ace`.  Converting your `.JPG` or `.PNG` textures to `.ACE` (or .`DDS` ) remains for you do as you will need to do this manually ourside of Blender.
 
 * For a sanity check... edit your exported `.S` file with a unicode editor to make sure your texture reference is correct.
 
 
-Since I edited my copy of the MSTS/ORTS export ADD-ON to export a `.DDS` instead of `.ACE`, my `.S` file has the following:
+[TIP]
+Since I edited my copy of the MSTS/ORTS export ADD-ON to have an export as `.DDS` option as weall as `.ACE`, my `.S` file has the following in it:
 
 ----
  images ( 1
@@ -675,23 +692,24 @@ I have made my own custom version of `EXPORT-OPENRAILS/MSTS` script that allows 
 
 You can find it here: https://gist.github.com/pwillard/cd840fff2407b4d318c5506ce6aa0296
 
-Due to this one change, I can use my current master texture file, which I edit in PSD format to keep layers intact, and just save it from PAINT.NET as a `.DDS` file natively.   As a result, I do a minimal amount of after-the-fact editing.  To work in BLENDER, I save a copy the master `PSD` file as a `PNG` file and to work with {or} I save a copy of the master `PSD` file as a `DDS` file.
+Due to this one change, I can use my current master texture file, which I edit in `PSD` format using PAINT.NET to keep the layers intact, and just save it from PAINT.NET as a `.DDS` file natively.   As a result, I do a minimal amount of after-the-fact editing.  To work in Blender, I save a copy the master `PSD` file as a `PNG` file and to work with {or} I save a copy of the master `PSD` file as a `DDS` file.
 
-The next step would be to copy the contents of the project's `FINAL` folder into my {or} `trains` content folder for testing.  I have eliminated the need to edit the `S` file or do a texture file conversion (skipping a step where I would have had to use a tool like MakeAce).
+The next step would be to copy the contents of the project's `FINAL` folder into my {or} `trains` content folder for testing.  I have eliminated the need to edit the `S` file or do a texture file conversion (skipping a step where I would have had to use a tool like MakeAce) by using the supported DDS format files.
 
 ====
 
-When the `Blender Exporter for MSTS` generates output files, you would tell it to export to your `project\final` folder. 
 
-
-[TIP]
-The Exporter script  will *only* create the model `S` file and by default it assumes you are creating .`ACE` files. You still need to create the ENG or WAG file that defines your model to the simulator.
+[IMPORTANT]
+The Exporter script  will *only* create the model `.S` file and by default it assumes you are creating .`ACE` files. You still need to create the ENG or WAG or similar related files that define your model to the simulator.
 
 
 
 
 <<<
+
 === Building a Library of Reusable Parts
+
+This section mainly appies to users who still use a version of Blender prior to version 3.0.
 
 [NOTE]
 As of version 3.0 of Blender, an Asset Browser is included that greatly simplifies using pre-made objects and textures.  In fact, this is one of the best reasons to consider upgrading to 3.0. 
@@ -702,9 +720,9 @@ One way to accomplish the re-use of the common parts is to `duplicate` it with k
 
 [TIP]
 ====
-A particularly nice add-on for BLENDER, if you are using a version older than 3.0,  is "Asset Management". Yes, I know,  it costs $40, but I don't regret it.  I don't even use all of its features.  It does let me export objects into an asset library. It creates a thumb-nail of object to assist with locating the item in the future from a grid of object pictures.  When you select an object from Asset Management, it will be inserted into your project.   
+A particularly nice add-on for Blender, if you are using a version older than 3.0,  is "Asset Management". Yes, I know,  it costs $40, but I don't regret it.  I don't even use all of its features.  It does let me export objects into an asset library. It creates a thumb-nail of object to assist with locating the item in the future from a grid of object pictures.  When you select an object from Asset Management, it will be inserted into your project.   
 
-https://BLENDERmarket-production.herokuapp.com/products/asset-management  
+https://Blendermarket-production.herokuapp.com/products/asset-management  
 
 This add-on has been made somewhat redundant now that Blender 3.0+ comes with an Asset Browser but it does still work in version 3.0.
 ====
@@ -718,7 +736,7 @@ A free and rather easy way of creating a collection of re-usable parts is to *CO
 
 * To copy,  press kbd:[CTRL,C]. The object will be copied to a system buffer. 
 
-* Open a fresh instance of BLENDER, clear out all unwanted default items from your scene and press kbd:[CTRL,V]
+* Open a fresh instance of Blender, clear out all unwanted default items from your scene and press kbd:[CTRL,V]
 
 * The copied object(s) will be placed in your new blend file. Copy as many objects into this file as you need. It is best to avoid overlapping them. 
 
@@ -727,12 +745,12 @@ image:images/lib1.jpg[]
 
 * Save it with a name that refers to the new object library you are making. Example: `Library_Freight.blend`
 
-* Now the tricky bit, open a *NEW GENERAL BLENDER FILE*
+* Now the tricky bit, open a *NEW GENERAL Blender FILE*
 
 * Choose `FILE -> DATA PREVIEWS -> BATCH GENERATE PREVIEWS` and chose the file name you used in the prior steps. Example: `Library_Freight.blend`
 
 [NOTE]
-This will take a few moments and will present a console screen when complete. We are telling blender to create Object Icons in the saved file.
+This will take a few moments and will present a console screen when complete. We are telling Blender to create Object Icons in the saved file.
 
 * In the future, you just need to use `FILE->APPEND` option to insert the object into your current projects, but, the bonus is that you can select them using the `THUMBNAIL` view option in the `FILE APPEND` menu,  so now you will know which part you are appending to your current `blend` file in a visual way.
 
@@ -750,7 +768,7 @@ When using this technique for an object library or multiple object libraries, yo
 
 It might mean that there are some redundancies in your files in the long run, but consider populating the OBJECTS and TEXTURE folders of each project local to that project versus using a master folder for all projects.  This way you can make folder-relative reference to files and you have the ability to move folder as well as share with others without breaking Texture file references, for example. 
 
-Another somewhat flexible option is to export your selected parts as an FBX or Collada (DAE) files.  These can be imported later with a `File-Import` process but it also means that you have something that can be imported to other applications as well.  The main difference with this option is that these are no longer native `.blend` files and there could be some mangling of contents when imported back into BLENDER.
+Another somewhat flexible option is to export your selected parts as an FBX or Collada (DAE) files.  These can be imported later with a `File-Import` process but it also means that you have something that can be imported to other applications as well.  The main difference with this option is that these are no longer native `.blend` files and there could be some mangling of contents when imported back into Blender.
 
 [NOTE]
 A file structure that I often use for individual project folders is shown below:
@@ -786,18 +804,18 @@ Then, `Save the file` in your ASSET folder,  otherwise your asset edits won't be
 You really should not need to make your own truck and coupler models.  These are pretty standardized objects with a minimal number of variations.  Chances are good that you can find available models to import instead of making them yourself.  
 
 [TIP]
-Erick Cantu has supplied a number of truck and coupler shapes at Elvas Tower website, for example.
+Erick Cantu has supplied a number of truck and coupler shapes at Elvas Tower website, for example.  I have uploaded a usable Blender example there as well.
 
 ==== Importing Existing Objects
 
 Importing shapes from other 3D Software can be a bit tricky and there are numerous reasons why.  I will try to outline a few basic steps and possible pitfalls that can be avoided.
 
-*  Imported shapes often get renamed with a `S_` prefix when using BLENDER importers which might require you to to rename your objects in the Outliner.
+*  Imported shapes often get renamed with a `S_` prefix when using Blender importers which might require you to to rename your objects in the Outliner.
 
-*  When your source objects are in a Autodesk `3DS` file format, which is pretty common, you need to cope with the fact that, for some reason, BLENDER 2.8+ dropped support for it. 3rd-party software like 3D CANVAS or some online converters can do the conversion for you.  
+*  When your source objects are in a Autodesk `3DS` file format, which is pretty common, you need to cope with the fact that, for some reason, Blender 2.8+ dropped support for it. 3rd-party software like 3D CANVAS or some online converters can do the conversion for you.  
 
 [TIP]
-You can also run multiple versions of BLENDER side by side. BLENDER version 2.79 still supports importing and exporting `3DS` files and it is a simple as importing a `.3DS` file into BLENDER 2.79, perform a `Select-All` and `COPY` and then `PASTE` into your current BLENDER 2.8 session.
+You can also run multiple versions of Blender side by side. Blender version 2.79 still supports importing and exporting `3DS` files and it is a simple as importing a `.3DS` file into Blender 2.79, perform a `Select-All` and `COPY` and then `PASTE` into your current Blender 2.8 session.
 
 *  UVMapping can survive an import operation... but material and texture selection probably didn't. 
 
@@ -805,7 +823,7 @@ You can also run multiple versions of BLENDER side by side. BLENDER version 2.79
 
 * You also will probably need to manually tell the `S` file exporter [under MSTS Materials] where to find the texture file under `BaseColorFilePath` input field.
 
-* Lastly, from personal experience, if you are importing a `DAE` (Collada format) file, you might encounter an issue with `UVMAP` assignment in `SHADER EDITOR` where you are not getting the right `UV map` assigned and you see no texture in the `Material Preview` mode  (Commonly called `LOOKDEV` mode).  This the second tab from the right in the viewport selections. Everything will LOOK right in the `Material Preview`, but exports will fail with a "Missing UVMAP in:" error when you try to use the `S` file exporter.  _See the next section for how to deal with this problem._
+* Lastly, from personal experience, if you are importing a `DAE` (Collada format) file deom say 3DC, you might encounter an issue with `UVMAP` assignment in `SHADER EDITOR` where you are not getting the right `UV map` assigned and you see no texture in the `Material Preview` mode  (Commonly called `LOOKDEV` mode).  This the second tab from the right in the viewport selections. Everything will LOOK right in the `Material Preview`, but exports will fail with a "Missing UVMAP in:" error when you try to use the `S` file exporter.  _See the next section for how to deal with this problem._
 
 Material Preview 
 image:images/lookdev.jpg[]
@@ -816,7 +834,7 @@ image:images/lookdev.jpg[]
 Each mesh that you export must have a uv map named `UVMap`.
 
 [NOTE]
-Since `UVMap` is the  *default* name assigned by BLENDER for new `UV MApping data`, if you create everything from scratch, you won't encounter the problem when you export. 
+Since `UVMap` is the  *default* name assigned by Blender for new `UV MApping data`, if you create everything from scratch, you won't encounter the problem when you export. 
 
 The mapping reference of `UVMap` is the only map that will get exported to an `S` file by the MSTS exporter.  When using the `DAE` importer, for example, you might end up with a `UVMap` that is referenced using an object name from the time of importing.  
 
@@ -824,7 +842,7 @@ There are some other cases where this could be an issue, for example:
 
 * An advanced user may have multiple uv maps with other names assigned. ( eg layered shaders, baking, etc )
 * When importing a mesh from some other program it may come with different `uv map` names
-* Some non-english versions of BLENDER may use a different default name.
+* Some non-english versions of Blender may use a different default name.
 
 You could check or try modify the name of a `uv map` like this:
 
@@ -884,11 +902,11 @@ Apologies for the terrible image.
 === Importing the Background Images
 
 [NOTE]
-Much of my previous content was created using Amabilis 3D Canvas modeling software. It was rather difficult to create and use good background images, so I seldom used this method.  With BLENDER, the process is much easier and I highly recommend it. 
+Much of my previous content was created using Amabilis 3D Canvas modeling software. It was rather difficult to create and use good background images, so I seldom used this method.  With Blender, the process is much easier and I highly recommend it. 
 
 
 [TIP]
-You should pre-determine the center-point of each view and align them with the axis lines in BLENDER.
+You should pre-determine the center-point of each view and align them with the axis lines in Blender.
 
 
 If you can find blueprints of at least the front/back and side view, you are all almost all set to use them as backgrounds.
@@ -901,7 +919,7 @@ Select FRONT VIEW (KEYPAD 1) and then ADD  -> Image -> Background menu tree to l
 
 
 [NOTE]
-By default in BLENDER 2.8x, you will only see the Side or Front background images when in front ortho or right ortho view.  The images will go away when you pan around your model. This is a setting in the Data Properties of the Background image object.
+By default in Blender 2.8x, you will only see the Side or Front background images when in front ortho or right ortho view.  The images will go away when you pan around your model. This is a setting in the Data Properties of the Background image object.
 
 
 
