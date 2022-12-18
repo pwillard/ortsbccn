@@ -8,6 +8,8 @@ The key advantage that Open Rails currently offers over Microsoft Train Simulato
 
 Since this document will be about using Blender, other 3d modeling tools will not be mentioned much unless it's for a point of contrast.
 
+<<<<
+
 === Common Terms and Definitions
 
 ALPHA:: A bit map with a portion of the image that is masked-out, making the location appear see-though in the image.
@@ -234,7 +236,7 @@ In the menu:SYSTEM[MEMORY & LIMITS] section,
 
 <<<<
 
-==== SAVE & LOAD
+==== Save & Load
 
 image::images/PREFS5.PNG[align=center]
 
@@ -248,7 +250,7 @@ I believe that you would want to  RE-ENABLE this option if you have .Blend files
 I would also adjust the "SAVE VERSIONS" option to allow for automatic backup copies of the current .Blend file to be created.
 
 
-==== FILE PATHS 
+==== File Paths
 
 image::images/PREFS6.PNG[align=center]
 
@@ -282,7 +284,7 @@ Various libraries can be selected using the menu options on the  left.
 
 <<<<
 
-==== ADD-ONS
+==== Add-Ons
 
 image::images/ADD-ON.PNG[align=center]
 
@@ -329,7 +331,7 @@ Edit Mesh Tools::  Another EDIT MODE addon tool and, like Loop Tools, it has a r
 
 Node Wrangler:: This add-on gives you several tools that help you work with nodes quickly and efficiently.  kbd:[CTRL-SPACE] for general menu, kbd:[CTRL-T] for texture and UV Mapping nodes, kbd:[CTRL-SHIFT-T] for PBR Texture nodes, kbd:[CTRL-SHIFT-LMB] to isolate a texture, kbd:[ALT-RMB] for Mixed Shader nodes, and kbd:[CTRL-RMB] for quick links.
 
-CURVE: `Extra Objects`:: Will add a number of additional Curve Object Primitives, such as Arc, Arrow, Cogwheel, Cycloid, Flower, Helix, Noise, N-sided, Profile, Rectangle, Splat and Star, some various knots, and additional variants of available primitives.
+ADD CURVE: `Extra Objects`:: Will add a number of additional Curve Object Primitives, such as Arc, Arrow, Cogwheel, Cycloid, Flower, Helix, Noise, N-sided, Profile, Rectangle, Splat and Star, some various knots, and additional variants of available primitives.
 
 ADD MESH: `Extra Objects`:: Will add a number of additional Mesh Object Primitives, such as five types of beams with Beam Builder, gears, honeycomb, diamonds, pipe joints, stars, some additional shapes similar to the Suzanne Monkey head, Add a single vertex, and wall builders. 
 
@@ -343,49 +345,51 @@ Automirror:: A quick and easy object mirroring tool with multiple options. A bit
 We will initially start with some freely available 3rd Party add-ons that we will want to have, including one optional one if you plan to model for Dovetail Games Train Simulator.
 
 
+[cols="1,3,3"]
+|===
+| Add-on	| Where to gert it	| What it does
 
-* `ADD-ONS` (3rd-Party)
-**  Blender28toMSTS - Available From: http://www.elvastower.com/forums/index.php?/topic/33247-Blender-28-to-msts-exporter/  - S file Export (MSTS ORTS - V4.3)  See the video:footnote:[Youtube https://youtu.be/j3AVw7s9qoA]  - Wayne says to un-zip the the file before using the Blender `install` optoin, as it won't install correctly due tothe additional support files included with the distibuted `.zip` file.
-**  Edge to Curve - Available from https://github.com/Stromberg90/Scripts/blob/master/Blender/Edge_To_Curve.py - A python script to create Curves from Edges that can be converted back to a MESH, used to create handrails and pipes. 
-***  optional: Briage28 - Available from: http://jujumatic.free.fr/Files/BRIAGE_G//BRIAGE_G_2.83Pckg_3-1-412.7z  -Train/Rail Simulator Export if you also have this simulator (Dovetail Games) 
+| Blender28toMSTS |Available From: http://www.elvastower.com/forums/index.php?/topic/33247-Blender-28-to-msts-exporter/| S file Export (MSTS ORTS - V4.3)  See the video:footnote:[Youtube https://youtu.be/j3AVw7s9qoA] Instructions say to un-zip the the file before using the Blender `install` option, as it won't install correctly due to the additional support files included with the distibuted `.zip` file.
+|Edge to Curve | Available from https://github.com/Stromberg90/Scripts/blob/master/Blender/Edge_To_Curve.py | A python script to create "Curves shapes from Edges" that can be converted back to a mesh.  It can be used to create handrails and pipes. 
+| Optional: Briage28 | Available from: http://jujumatic.free.fr/Files/BRIAGE_G//BRIAGE_G_2.83Pckg_3-1-412.7z  | Train/Rail Simulator Export if you also have this simulator (Dovetail Games) 
+|===
 
-Note: These are free but some add-ons we might want to install that will be discussed later might be paid add-ons.
+Note: These are free but some of the add-ons that we might want to install later might be paid add-ons.
 
 There are hundreds of add-ons that are not distributed with Blender and are developed by others. To add them to the list of availble add-ons, they must be installed into Blender.
 
-To install these, choose the btn:[Install…] button and use the File Browser to select the `.zip` or `.py` add-on file.
+To install these, choose the btn:[Install…] button and use the `File Browser` to select the `.zip` or `.py` add-on file.
 
-You will then have the option to enable to disable the installed add-on.
-
-<<<<
+You will then have the option to enable to disable the installed add-on using the check-box.
 
 ==== Exit and Save Preferences
 
 Exiting (closing) the menu:EDIT[PREFERENCES] section will save your changes. By default, it automatically saves your changes unless you have unchecked `Autosave Preferences` in the _hambuger_ menu at the bottom of the *Preferences* window.
 
-==== Other Settings
+<<<
+
+=== Other Settings
 
 We will continue making changes to the header and properties panels near the top and right side of the screen respectively. Some. if not all, of these changes are purely optional but they are worth checking out.
 
-===== Scene Settings
+==== Scene Settings
+
 image::images/PREFS10.PNG[align=center]
 
 Define your default output resolution as 2048x2048 since we will generally be working with square textures.
 
 
-=====  GIZMO settings
+====  GIZMO settings
 
 In the Layout window there is the GIZMOS Drop Down menu. (Look for an arc with an arrow icon) You can enable the MOVE option with a check-box.  This will give you AXIS based MOVE arrows that you can grab to assist with moveing an object around your scene. (Or you can just use the "G" key options.)
 
-===== Overlays
+==== Overlays
 
 Right next to the GIZMO options, there is an icon for OVERLAYS.
 
 Under Overlays (Select the default cube and change to `EDIT MODE` using kbd:[TAB]. If there is no default cube, then use menu:Add[Mesh > Cube] to place a cube in the scene and go to EDIT mode using kbd:[TAB].)  In the `OVERLAYS` drop down, enable the `EDGE LENGTH` check-box.  This will show the actual edge unit lengths of selected objects when you have and edge or edges selected. 
 
-<<<<
-
-===== Shading settings  
+==== Shading Settings  
 
 image::images/PREFS8.PNG[align=center]
 
@@ -399,7 +403,7 @@ I also choose MATCAP and pick the leftmost MAPCAP option for better visual repre
 
 <<<<
 
-===== Units
+==== Units
 
 image::images/PREFS11.PNG[align=center]
 
@@ -407,7 +411,7 @@ If you need to work in Imperial Units versus Metric, you adjust the setting unde
 
 <<<<
 
-===== Scene (Rendering)
+==== Scene (Rendering)
 
 image::images/PREFS15.PNG[align=center]
 
@@ -419,9 +423,8 @@ menu:Properties Panels[Scene>Render Engine > Cycles] and modify SAMPLING > RENDE
 
 menu:Properties Panels[Scene > Film] In the Film section,  Enable the check-box for "Transparent"	(This removes any background from renders, you *will* want this)
 
-<<<<
 
-===== Shading
+==== Shading
 
 Related to the `Shading` Tab on the Top Bar Menu, we will make some adjustments for lighting.  Rather than rely on actual `light` objects in our scene, we can create general illumination effects based on HDRI images. 
 
@@ -449,7 +452,7 @@ The last thing we need to do now that we have replaced how we do our lighting fo
 
 <<<<
 
-==== Done, for now
+=== Done, for now
 
 One last step... +
 
@@ -468,7 +471,7 @@ We will now have all of our basic user preferences and startup file options the 
 
 <<<
 
-=== Folder structure
+== Folder structure
 
 The layout of your project development folder is completely personal depending on how you organize your work.  I'll share what I currently use as an example.
 
