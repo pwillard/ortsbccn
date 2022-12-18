@@ -179,16 +179,16 @@ The 3D cursor is where any new object will be placed. By default it is at world 
 
 *MENUS*
 
-To hide or reveal the Number Panel on the right side use  kbd:[N] key.   (Not shown above)
-To hide or reveal the tools Panel on the left side use kbd:[T] key.
-To see your "Quick Favorites" menu, use the kbd:[Q] key.
-Use kbd:[F3] for access to the search feature.
-Use kbd:[CTRL+TAB] combination for access to the `MODE` pie menu.
-Use kbd:[~] for access to the `VIEWPORT` pie menu.
-Use kbd:[.] for access to the `PIVOT POINT` pie menu.
-Use kbd:[,] for access to the `AXIS ORIENTATION` pie menu.
-Use kbd:[SHIFT + S] to access the `SNAPPING` pie menu.
-Use kbd:[Z] to access the `VIEWPORT SHADING OPTIONS` pie menu.
+To hide or reveal the Number Panel on the right side use  kbd:[N] key   (Not shown above) +
+To hide or reveal the tools Panel on the left side use kbd:[T] key +
+To see your "Quick Favorites" menu, use the kbd:[Q] key +
+Use kbd:[F3] for access to the search feature +
+Use kbd:[CTRL+TAB] combination for access to the `MODE` pie menu +
+Use kbd:[~] for access to the `VIEWPORT` pie menu +
+Use kbd:[.] for access to the `PIVOT POINT` pie menu +
+Use kbd:[,] for access to the `AXIS ORIENTATION` pie menu +
+Use kbd:[SHIFT + S] to access the `SNAPPING` pie menu +
+Use kbd:[Z] to access the `VIEWPORT SHADING OPTIONS` pie menu +
 
 image:images/NumberPanel.png[]
 
@@ -196,11 +196,11 @@ The above image shows what it looks like when rolled out. It is also where some 
 
 *VIEWS*
 
-Use kbd:[HOME] to show all objects
-Use kbd:[H] to hide a selected object
-Use kbd:[ALT + H] to un-hide all objects
-Use kbd:[SHIFT + H] to show all objects
-Use kbd:[ALT + Z] to toggle X-Ray mode
+Use kbd:[HOME] to show all objects +
+Use kbd:[H] to hide a selected object +
+Use kbd:[ALT + H] to un-hide all objects +
+Use kbd:[SHIFT + H] to show all objects +
+Use kbd:[ALT + Z] to toggle X-Ray mode +
 
 The Number Pad Keys are also used to select various views.
 
