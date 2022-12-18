@@ -218,9 +218,9 @@ Snapping:: Select the default cube and press and hold kbd:[MMB], then press the 
 
 Zoom:: Select the default cube and press and hold kbd:[MMB] and then press the kbd:[CTRL] key. Moving up, down will zoom the views in and out.
 
-Camera View:: Pressing the kbd:[0/INS] key on your keypad will toggle the Camera View. In this view, you will see what the camera sees of your screen which is also what your render will output.
+Camera View:: Pressing the kbd:[INS] key on your keypad will toggle the Camera View. In this view, you will see what the camera sees of your screen which is also what your render will output.
 
-Zoom to Selected:: Pressing the kbd:[./DEL] key on your keypad will zoom in and give preference to the selected object. 
+Zoom to Selected:: Pressing the kbd:[DEL] key on your keypad will zoom in and give preference to the selected object. 
 
 Front/Rear View:: kbd:[Keypad 1] / kbd:[CTRL,Keypad 1]
 
@@ -255,7 +255,7 @@ In Blender, there are 2 primary 3D model manipulation modes.  These are `OBJECT 
 
 Use the kbd:[TAB] key to switch modes.
 
-`OBJECT MODE`:: With `OBJECT MODE`, which is the default mode in Blender, actions are available for all object types since this mode is dedicated to Object data-block editing (e.g. position, rotation, size) as well as Modifiers.  Edges, Faces and Vertices cannot be modified in this mode.
+OBJECT MODE:: With `OBJECT MODE`, which is the default mode in Blender, actions are available for all object types since this mode is dedicated to Object data-block editing (e.g. position, rotation, size) as well as Modifiers.  Edges, Faces and Vertices cannot be modified in this mode.
 
 image:images/objectmode.PNG[]
 
@@ -263,18 +263,18 @@ In this mode, you can select individual objects that make up your design so they
 
 In object mode, the following shortcut keys are useful:
 
-Use kbd:[SHIFT + A] to Add a new object.
-Use kbd:[SHIFT + TAB] to toggle `SNAPPING` modes.
-Use kbd:[CTRL + A] to Apply transformations.
-Use kbd:[CTRL + J] to Join objects together.
-Use kbd:[SHIFT + C] to reset cursor to center.
-Use kbd:[SHIFT + D] to Duplicate the selected object.
+Use kbd:[SHIFT + A] to Add a new object +
+Use kbd:[SHIFT + TAB] to toggle `SNAPPING` modes +
+Use kbd:[CTRL + A] to Apply transformations +
+Use kbd:[CTRL + J] to Join objects together +
+Use kbd:[SHIFT + C] to reset cursor to center +
+Use kbd:[SHIFT + D] to Duplicate the selected object +
 
 
 
 <<<
 
-EDIT MODE:: The *selected* item in `OBJECT MODE` becomes the focused object when moving to `EDIT MODE`. `EDIT MODE` is a focused mode and you will not accidentally select other parts of the model in this mode. This mode available for all object types that can be rendered, as it is dedicated to manipulating their “shape”. The EDIT MODE allows adjustment of Vertices, Edges and Faces for mesh object types as well as the control points for curves, surfaces and points.  
+EDIT MODE:: The *selected* item in `OBJECT MODE` becomes the focused object when moving to `EDIT MODE`. `EDIT MODE` is a focused mode and you will not accidentally select other parts of the model in this mode. This mode available for all object types that can be rendered, as it is dedicated to manipulating their “shape”. The `EDIT MODE`` allows adjustment of Vertices, Edges and Faces for mesh object types as well as the control points for curves, surfaces and points.  
 
 [TIP]
 In `EDIT MODE`, the object selected will show Vertices, Edges and Faces.  Selected edges, vertices or faces will adopt a highlight color when selected. Also notice the larger tool set on the left compared to `OBJECT MODE`.
@@ -283,11 +283,11 @@ image:images/editmode.PNG[]
 
 In Edit mode, the following shortcut keys are useful:
 
-Use kbd:[1] Vertex Mode.
-Use kbd:[2] Edge Mode.
-Use kbd:[3] Face Mode.
-Use kbd:[P] Create Separate objects from the selection in various ways.
-Use kbd:[F] Fill Face.
+Use kbd:[1] Vertex Mode +
+Use kbd:[2] Edge Mode +
+Use kbd:[3] Face Mode +
+Use kbd:[P] Create Separate objects from the selection in various ways +
+Use kbd:[F] Fill Face +
 
 
 
@@ -398,15 +398,13 @@ image:images/CustomSettings.PNG[]
 
 
 [TIP]
-You would later create as many LOD based MAIN_xxxx collections as needed for your modeling.
+You would later create as many LOD based MAIN_xxxx collections as needed for your model.
 
 image:images/MyCollection.JPG[]
 
-[TIP]
-If you have not already done so, you can also go to the `SYSTEM` section in `Preferences` and increase your number of UNDO steps to 200 or more.  Under `Themes->3d ViewPort`, you can scroll to the bottom and make your vertex sizes larger so they can be more easily seen. I normally use 5 for Vertex Size and `Face Dot Size`.  You can also adjust the color of the selected object and active object to make them stand out more.
 
 [IMPORTANT]
-You will also want to download and unzip the "Blender 2.8 to MSTS Exporter" from Elvas Tower and then read the instructions on how to install and use it. It includes very fine PDF file with instructions on how to use it.
+You will want to download and unzip the "Blender 2.8 to MSTS Exporter" from Elvas Tower and then read the instructions on how to install and use it. It includes very fine PDF file with instructions on how to use it.
 
 
 
