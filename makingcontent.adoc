@@ -242,7 +242,7 @@ image::images/PREFS5.PNG[align=center]
 
 In the menu:SAVE & LOAD[BLEND FILES] section:
 
-Consider unchecking the `Load UI` option.  When this is checked, the User Interface settings come from the .Blend file that was opened and not the normal User Interface you have setup for new .Blend files as your default.  This is especially troublesome, if left enabled, when you import someone else's .Blend file, as the user interface could be very different from what you normally use.  Change this as needed, but you should know how to include (or not include) the User Interface settings when loading .Blend files.
+Consider unchecking the `Load UI` option.  When this is checked, the User Interface settings come from the .Blend file that was opened and not the normal User Interface you have setup for new .Blend files as your default.  This is especially troublesome, if left enabled, when you import someone else's .Blend file, as the user interface could be very different from what you normally use.  Change this as needed, but you should know how to include (or not include) the User Interface settings when loading .Blend files.  You may find that you often want to switch this setting on and off.
 
 [TIP]
 I believe that you would want to  RE-ENABLE this option if you have .Blend files that are using millimeters, common settings for 3D Printing model files, so that you would maintain proper UNITS settings when working on smaller objects.
@@ -318,16 +318,15 @@ To get us started, here are a few built in Add-ons I recommend installing:
 * NODE: `Node Wrangler`
 * ADD CURVE: `Extra Objects`
 * ADD MESH: `Extra Objects` 
-* MESH: `Automirror` - Super-fast cutting and mirroring of mesh
+* MESH: `Automirror` 
 
 
-
-Loop Tools:: This and EDIT MODE addon that has a lot of operators for turning any number of edges into a circle or curve, It can bridge edge loops *and* add segments while doing it, it can turn sloppy loops into a perfect curve, it can flatten things at graduated angles unlike using kbd:[S] kbd:[X] kbd:[0].... It can TWIST things... It has a cool LOFT option (PLAY WITH IT) and finally, it can average out the distance between a series of vertices using the SPACE option. When in EDIT MODE, it will show up on the right side N-Panel menu under the `EDIT` tab or in the kbd:[RMB] menu.
+Loop Tools:: This and EDIT MODE addon that has a lot of operators for turning any number of edges into a circle or curve, It can bridge edge loops *and* add segments while doing it, it can turn sloppy loops into a perfect curve, it can flatten things at graduated angles unlike using kbd:[S] kbd:[X] kbd:[0].... It can TWIST things... It has a cool LOFT option (PLAY WITH IT) and finally, it can average out the distance between a series of vertices using the SPACE option. When in EDIT MODE, it will show up on the right side _N-Panel_ menu under the `EDIT` tab or in the kbd:[RMB] menu.
 
 
 F2:: A quick FACE creation (filling holes) add on to save keystrokes when manually adding faces, especially in repetitive face creation. It used the kbd:[F] key.
 
-Edit Mesh Tools::  Another EDIT MODE addon tool and, like Loop Tools, it has a right side N-Panel menu and a kbd:[RMB] menu. It has sections that deal with vertices, faces, and edges. It has some features that require multiple steps to do normally.  The menu options are pretty self explanatory, so its worth doing some experiments to see how its features can be helpful. Some of the best features are related to face manipulations.
+Edit Mesh Tools::  Another EDIT MODE addon tool and, like Loop Tools, it has a right side _N-Panel_ menu and a kbd:[RMB] menu. It has sections that deal with vertices, faces, and edges. It has some features that require multiple steps to do normally.  The menu options are pretty self explanatory, so its worth doing some experiments to see how its features can be helpful. Some of the best features are related to face manipulations.
 
 Node Wrangler:: This add-on gives you several tools that help you work with nodes quickly and efficiently.  kbd:[CTRL-SPACE] for general menu, kbd:[CTRL-T] for texture and UV Mapping nodes, kbd:[CTRL-SHIFT-T] for PBR Texture nodes, kbd:[CTRL-SHIFT-LMB] to isolate a texture, kbd:[ALT-RMB] for Mixed Shader nodes, and kbd:[CTRL-RMB] for quick links.
 
@@ -381,11 +380,19 @@ Define your default output resolution as 2048x2048 since we will generally be wo
 
 ====  GIZMO settings
 
+[TIP]
+Below is a change that is very related to your personal preference, so it is optional.  Some feel this creates a messy window.
+
 In the Layout window there is the GIZMOS Drop Down menu. (Look for an arc with an arrow icon) You can enable the MOVE option with a check-box.  This will give you AXIS based MOVE arrows that you can grab to assist with moveing an object around your scene. (Or you can just use the "G" key options.)
 
 ==== Overlays
 
 Right next to the GIZMO options, there is an icon for OVERLAYS.
+
+An option in Overlays that you might want enabled is `Statistics` at it will help you keep an eye on your poly count budget.
+
+[TIP]
+Below is a change that is also very related to your personal preference so it is optional.  Some feel this creates a *really* messy edit window on complex shapes.
 
 Under Overlays (Select the default cube and change to `EDIT MODE` using kbd:[TAB]. If there is no default cube, then use menu:Add[Mesh > Cube] to place a cube in the scene and go to EDIT mode using kbd:[TAB].)  In the `OVERLAYS` drop down, enable the `EDGE LENGTH` check-box.  This will show the actual edge unit lengths of selected objects when you have and edge or edges selected. 
 
@@ -407,7 +414,10 @@ I also choose MATCAP and pick the leftmost MAPCAP option for better visual repre
 
 image::images/PREFS11.PNG[align=center]
 
-If you need to work in Imperial Units versus Metric, you adjust the setting under the UNITS SYSTEM option in Scene Properties. 
+If you need to work in Imperial Units versus Metric, you would adjust the setting under the UNITS SYSTEM option in Scene Properties.  
+
+[IMPORTANT]
+Changes to `UNIT` settings can have effects in other areas, such as Camera View settings related to  `Focal Length`, `Clip Start` and `Clip End`. Set in the _N-Panel_ under `View`.
 
 <<<<
 
@@ -456,7 +466,7 @@ The last thing we need to do now that we have replaced how we do our lighting fo
 
 One last step... +
 
-Press the kbd:[N] key to bring out the `Number Panel` where you can adjust objects settings and locations by entering numbers. This will have the number panel available when we start new Blender projects.
+Press the kbd:[N] key to bring out the `Number Panel`, referred to as _N-Panel_, where you can adjust objects settings and locations by entering numbers. This will have the _N-Panel_ available when we start new Blender projects.
 
 image::images/PREFS9.PNG[align=center]
 
