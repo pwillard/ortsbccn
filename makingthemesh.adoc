@@ -93,7 +93,7 @@ When using background images and modeling a freight car, for example, you would 
 
 
 [TIP]
-Speaking of working with images, Blender has an add on that you can install called "Insert Images as Planes" that is a bit more versatile than "Add Image Background" option. The ADD menu will now have this option available.  It will assign the material of the image to the plane and allow you to rely on things like ALPHA masking and is affected by scene lighting, but like I mentioned above, it will only show up in a TEXTURE view mode, so is not usefull for a background refrence drawing. 
+Speaking of working with images, Blender has an add on that you can install called "Insert Images as Planes". The ADD menu will now have this option available.  It will assign the material of the image to the plane and allow you to rely on things like ALPHA masking.  It is also affected by scene lighting, but like I mentioned above, this texture will only show up in a TEXTURE view mode, so this feature is not useful for a background refrence drawing. 
 
 
 
@@ -145,9 +145,9 @@ As I said, Blender isn't the easiest program to learn, but even a first-week nov
 [cols="30,70", options="header"]
 |===
 | KEY| ACTION
-|   kbd:[G] | `G`rab - To Move things
-|   kbd:[R] | `R`otate
-|   kbd:[S] | `S`cale
+|   kbd:[G] | Grab - To Move things. Cam be followed by an Axis option and distance option
+|   kbd:[R] | Rotate - Can be followed by  Axis and  Angle options
+|   kbd:[S] | Scale - Can be included with other keys to limit scaling to desired axis
 |===
 
 [TIP]
@@ -216,7 +216,7 @@ Panning:: Select the default cube and press and hold your kbd:[MMB] and then pre
 Snapping:: Select the default cube and press and hold kbd:[MMB], then press the kbd:[ALT] key and by moving left, right, up, down you will snap the screen to various orthographic views.
 
 
-Zoom:: Select the default cube and press and hold kbd:[MMB] and then press the kbd:[CTRL] key. Moving up, down will zoom the views in and out.
+Zoom:: Select the default cube and press and hold kbd:[MMB] and then press the kbd:[CTRL] key. Moving up, down will zoom the views in and out. You can also use the mouse kbd:[SCROLL WHEEL]
 
 Camera View:: Pressing the kbd:[INS] key on your keypad will toggle the Camera View. In this view, you will see what the camera sees of your screen which is also what your render will output.
 
@@ -274,7 +274,7 @@ Use kbd:[SHIFT + D] to Duplicate the selected object +
 
 <<<
 
-EDIT MODE:: The *selected* item in `OBJECT MODE` becomes the focused object when moving to `EDIT MODE`. `EDIT MODE` is a focused mode and you will not accidentally select other parts of the model in this mode. This mode available for all object types that can be rendered, as it is dedicated to manipulating their “shape”. The `EDIT MODE`` allows adjustment of Vertices, Edges and Faces for mesh object types as well as the control points for curves, surfaces and points.  
+EDIT MODE:: The *selected* item in `OBJECT MODE` becomes the focused object when moving to `EDIT MODE`. `EDIT MODE` is a focused mode and you will not accidentally select other parts of the model in this mode. This mode available for all object types that can be rendered, as it is dedicated to manipulating their “shape”. The `EDIT MODE` allows adjustment of Vertices, Edges and Faces for mesh object types as well as the control points for curves, surfaces and points.  
 
 [TIP]
 In `EDIT MODE`, the object selected will show Vertices, Edges and Faces.  Selected edges, vertices or faces will adopt a highlight color when selected. Also notice the larger tool set on the left compared to `OBJECT MODE`.
@@ -304,15 +304,18 @@ There are now thousands of YouTube videos about modeling in in Blender if any of
 ==== EXTRUDE
 image:images/extrusion.jpg[]
 
-kbd:[E] Key:: The official definition of the extrusion operation is: The `extrusion` operation duplicates vertices, while keeping the new geometry connected with the original vertices. Vertices are turned into edges and edges will form faces.
+kbd:[E] Key:: The official definition of the extrusion operation is: _The `extrusion` operation duplicates vertices, while keeping the new geometry connected with the original vertices. Vertices are turned into edges and edges will form faces._
 
-There are various options with extrusion operations that define how the extrusion will behave, these include "Extrude Region", "Extrude Individual", "Extrude Edge".  Extrude works by shifting along "Normals".
+There are various options with extrusion operations that define how the extrusion will behave, these include "Extrude Region", "Extrude Individual", "Extrude Edge".  Extrude works by shifting position along "Normals".
 
 [TIP]
 When using EXTRUDE and you don't get the behavior you wanted, try using kbd:[ALT,E] to get the Extrude Options pop-up menu. Try the other EXTRUDE options. 
 
 [TIP]
 When using EXTRUDE, you can extrude to the mouse gizmo location (MOVE MODE) in by using kbd:[CTRL,E] and right click. This object tool is directly under the ARROW SELECT tool.
+
+[IMPORTANT]
+If you select extrude and accept the extrude without dragging a distance away from the selection, the extrude "still happened" even though you might not be able to see it.
 
 
 <<<
@@ -330,7 +333,7 @@ image:images/inseta.png[]
 image:images/insetb.png[]
 
 [TIP]
-When you use inset and the inset amount appears to be unevenly applied, you likely have not applied your scale transformations.  In other words, your scale values in the object transformation numbers panel are not all set to 1.00.  You correct this in `OBJECT MODE` by selecting `OBJECT->APPLY->SCALE` from the top menu. 
+When you use inset and the inset amount appears to be unevenly applied, you likely have not applied your scale transformations to the underlying object ahead of time.  In other words, your scale values in the object transformation numbers panel are not all set to 1.00.  You correct this in `OBJECT MODE` by selecting `OBJECT->APPLY->SCALE` from the top menu. 
 
 [TIP]
 You might need to press kbd:[I] again to enable INDIVIDUAL ORIGINS if you notice that inset is not doing what you expect.
@@ -353,18 +356,19 @@ A Bevel on a FLAT PLANE will create an INSET.
 
 ==== LOOP CUT & SLIDE
 
-kbd:[CTRL + R] Key Combination:: This tool splits a set of faces by inserting new edge loops intersecting the chosen edge. It will preview the loop cut as you move the mouse cursor around the object, snapping from horizontal to vertical based on position.  The Loop-Cut will stop at `NGON` Intersections so it is better to use this tool early before you add a lot of geometry changes or booleans. If your mesh has non-NGON shapes, IE; it has been triangulated already... then this and other some other tools won't work as expected.
+kbd:[CTRL + R] Key Combination:: This tool splits a set of faces by inserting new edge loops intersecting the chosen edge(s). It will preview the loop cut as you move the mouse cursor around the object, snapping from horizontal to vertical based on position.  The Loop-Cut will stop at `NGON` Intersections so it is better to use this tool early before you add a lot of geometry changes or booleans. If your mesh has non-NGON shapes, IE; it has been triangulated already... then this and other some other tools won't work as expected.
 
 [TIP]
 You can use the function kbd:[CTRL-F] or Search for "Tris to Quads" to un-triangulate a shape to possibly regain the ability to use the Loop Cut options again.
 
 [TIP]
+----
 Later on... you can also shift selected vertices or edges with kbd:[GG] (G twice) to slide the selected vertices along edges... (You can do this with faces as well, but, well, its usefulness is limited.)
 
-You can use the mouse to SLIDE the edge loop(s) into position before confirming. You can add multiple edge loops at once  by using the scroll wheel on the mouse or by entering a value with the keyboard before confirming.
+You can use the mouse to SLIDE the the selected edge loop(s) into position before confirming. You can add multiple edge loops at once  by using the scroll wheel on the mouse or by entering a value with the keyboard before confirming.
 
 You can also use the options box that shows up in the bottom left of the screen to adjust parameters manually.
-
+----
 
 
 
@@ -734,31 +738,31 @@ A free and rather easy way of creating a collection of re-usable parts is to *CO
 
 * To copy,  press kbd:[CTRL,C]. The object will be copied to a system buffer. 
 
-* Open a fresh instance of Blender, clear out all unwanted default items from your scene and press kbd:[CTRL,V]
+* Open a _fresh instance of Blender_ so you have 2 blender sessions running, clear out all unwanted default items from your new scene and press kbd:[CTRL,V]
 
-* The copied object(s) will be placed in your new blend file. Copy as many objects into this file as you need. It is best to avoid overlapping them. 
+* The copied object(s) from your first Blender session  will be placed in your new blend file. Copy as many objects into this file as you need. It is best to avoid overlapping them. 
 
 
 image:images/lib1.jpg[]
 
-* Save it with a name that refers to the new object library you are making. Example: `Library_Freight.blend`
+* Save it now with a name that refers to the new object library you are making. Example: `Library_Freight.blend` (Don't skip this step) 
 
 * Now the tricky bit, open a *NEW GENERAL Blender FILE*
 
 * Choose `FILE -> DATA PREVIEWS -> BATCH GENERATE PREVIEWS` and chose the file name you used in the prior steps. Example: `Library_Freight.blend`
 
 [NOTE]
-This will take a few moments and will present a console screen when complete. We are telling Blender to create Object Icons in the saved file.
+This will take a few moments and will eventually present you with a console screen when complete. By doing this, we are telling Blender to create Object Icons in the saved file.
 
 * In the future, you just need to use `FILE->APPEND` option to insert the object into your current projects, but, the bonus is that you can select them using the `THUMBNAIL` view option in the `FILE APPEND` menu,  so now you will know which part you are appending to your current `blend` file in a visual way.
 
-Choose append ans select `THUMBNAIL` view you will see file menu. 
+* Choose append ans select `THUMBNAIL` view you will see file menu. 
 
-Choose the library file you saved
+* Choose the library file you saved
 
 image:images/lib3.jpg[]
 
-Choose OBJECT folder and you will see ICONS of the parts in the file. Select one and it will be appended to your current file.
+* Choose OBJECT folder and you will see ICONS of the parts in the file. Select one and it will be appended to your current file.
 
 image:images/lib4.jpg[]
 
@@ -767,6 +771,9 @@ When using this technique for an object library or multiple object libraries, yo
 It might mean that there are some redundancies in your files in the long run, but consider populating the OBJECTS and TEXTURE folders of each project local to that project versus using a master folder for all projects.  This way you can make folder-relative reference to files and you have the ability to move folder as well as share with others without breaking Texture file references, for example. 
 
 Another somewhat flexible option is to export your selected parts as an FBX or Collada (DAE) files.  These can be imported later with a `File-Import` process but it also means that you have something that can be imported to other applications as well.  The main difference with this option is that these are no longer native `.blend` files and there could be some mangling of contents when imported back into Blender.
+
+[TIP]
+For the curious, 
 
 [NOTE]
 A file structure that I often use for individual project folders is shown below:
@@ -1041,6 +1048,18 @@ image:images/door4.PNG[]
 * With the EYEDROPPER, select the cubes we just created to make the door shapes. Since we won't be adjusting the door frame further, you *could* apply the modifier and we will see the new cutouts for the doors.
 
 image:images/door3.PNG[]
+
+
+== Baking Abient Occlusion
+
+When Baking Ambient Occlusion, Here are some tips:
+
+1. Gather parts that will receive AO into a collection to make them easy to select.
+2. Ensure the UV Maps for those parts do not wrap off the edge of the texture sheet.
+3. Coplanar surfaces are a problem, including two sided, they bake black.
+4. Set 'Render Engine' to Cycles.
+5. Set Render Max Samples low eg 8, for testing, high for better quality , eg 128, 256 etc
+6. If your model has secondary LOD's ensure they don't cast a shadow on your primary model, use 'Disable In Render' in the outliner
 
 
 

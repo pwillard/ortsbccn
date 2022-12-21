@@ -1,4 +1,4 @@
-= Open Rails: Blender Content Creation Notebook
+= Blender Content Creation Notebook : A guide to making content for Open Rails
 :toc:
 :toclevels: 3
 :sectnums!:
@@ -10,7 +10,7 @@
 :homepage: http://www.railsimstuff.com
 :revision: 2
 :copyright: Copyright © 2020 - 2022
-:title-page-background-image: image:images/blueprint.jpg[fit=scale-down]
+//:title-page-background-image: image:images/blueprint.jpg[fit=scale-down]
 :encoding: utf-8
 :lang: EN
 :experimental:
@@ -34,6 +34,8 @@
 :BR: }
 :sourcedir: code
 :source-highlighter: rouge
+:revnumber: 0.1.0
+:revdate: 2022-12-21
 :OR: Open Rails
 :ORTS: Open Rails Train Simulator
 :MSTS: Microsoft Train Simulator
@@ -46,37 +48,18 @@
 
 Open Rails, Blender Content Creator Notebook
 
-{copyright}  {author}  
-
-
-Lettering:: This book is typeset using the Ubuntu TrueType font
-
-Text Layout:: Ruby - ASCIIDOCTOR-PDF
-
-
-
-<<<
-== Open Rails, Blender Content Creator Notebook
-
-{copyright}  {author}  
-
-
-=== Li­cense
+{revdate}  {author}  
 
 This work is li­censed un­der a creative commons attribution-sharealike 4.0 international license
 
-image:images/CC-BY-SA.svg[width=87,height=30]
+image::images/CC-BY-SA.svg[width=87,height=30,align=center]
 
 
-
-
-
+== Open Rails, Blender Content Creator Notebook
 
 == About This Document
 
 This is a first attempt at a guide to using Blender with Open Rails for content creation.   For this document, the {version} version of Blender 2.8 should be the minimum release used. Older versions of Blender will not be shown or used. It is recommended to use the latest Long Term Support (LTS) release for maximum compatability with what is shared in this document.
-
-
 
 === About The Author
 
@@ -114,6 +97,9 @@ Useful resources:
 * http://www.nordicfx.net/      HDRI backgrounds
 * https://polyhaven.com/  Textures and HDRI Backgrounds
 * https://github.com/Stromberg90/Scripts/blob/master/Blender/Edge_To_Curve.py   -Simple but handy script add-on for Pipes and Handrail creation.
+
+[NOTE]
+Some sections of the {MSTS} technical documents are also included here as reference material since some of these details exist no where else.
 
 <<<<
 
@@ -160,8 +146,8 @@ Here is the list of things that I assume about the reader.
 * You are reasonably new to content creation for Open Rails
 * You have Open Rails installed and working
 * You have installed TSRE5 for Consist management
-* You have a texture file editor that supports PSD, PNG and DDS formats.footnote:[A good example is the Paint.net, or GIMP which are both free] 
-* You have some idea about how Open Rails (and MSTS) content is created
+* You have a texture file editor that supports PSD, PNG and DDS formats.footnote:[A good example is the Paint.net, KRITA or GIMP all of which are free] 
+* You have some idea about how {OR} and {MSTS} content is created
 * You have a project in mind, but you understand that you will not create your Magnum Opus on a first try.
 
 If you have prior experience with GMAX, Train Sim Modeler or 3D Canvas, it will be a plus, but it is not required.
@@ -179,6 +165,10 @@ Due to the way this document originated, it may seem to jump around and be repet
 :numbered!:
 include::makingcontent.adoc[]
 include::makingthemesh.adoc[]
+include::makingtheconfig.adoc[]
+
+[index]
+== Index
 
 
 

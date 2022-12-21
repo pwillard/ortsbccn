@@ -2,6 +2,7 @@
  
   
 About ORTS:: The Open Rails Train Simulator is an open source project that exists primarily because the promised Microsoft Train Simulator 2 never happened. {OR} strives to be backwardly compatible with nearly all existing MSTS content while adding many new features and corrects old issues that existed in the Microsoft/Kuju releases.  Very often, you can use MSTS and ORTS terms interchangeably, but keep in mind that ORTS can handle higher poly count (more complex) models than MSTS can as well as having many other changes added that are unique to {OR}. 
+(((Open Rails, "The Open Rails Train Simulator, free and open source project" )))
 
 [NOTE]
 The key advantage that Open Rails currently offers over Microsoft Train Simulator is that good frame rates can be maintained with a much higher number of polygons, so curves can be smoother and more detail can be modelled. Open Rails also displays 32-bit color (whereas Microsoft Train Simulator is limited to 16-bit). Another advantage is the longer viewing distances, adjustable from 2km out to 10km. -- _from OpenRails.org website_
@@ -12,59 +13,33 @@ Since this document will be about using Blender, other 3d modeling tools will no
 
 === Common Terms and Definitions
 
-ALPHA:: A bit map with a portion of the image that is masked-out, making the location appear see-though in the image.
-
-MESH::  A 3D Model "shape" made up of 1 or more "faces" without texture
-
-FACE::  A surface created by 3 or more vertices.
-
-VERTEX::    (Plural = vertices ) a point in 3d space with x,y,z coordinates, often used as part of a location where edges and faces meet.  
-
-EDGE::  A line created by the linking of 2 vertices ( known as a "2-dimensional object")
-
-OBJECT::  A 2-dimensional object has length and height, but no depth. Examples of 2D objects are planes, polygons and lines. A 3-dimensional object has length, height, and depth. Examples of 3D objects are cubes and spheres.
-
-POLY COUNT::  The "poly count" is a total of the number of "polygons" used to create a 3d mesh. A polygon is made up of vertices. It is used as an indicator of how complex a model is.
-
-POLYGON::    Refers to the planar face of this closed shape, edges are the straight edges that define it, and points/vertices are where those various edges connect with one another. Blender calls these "tris", short for faces made of triangles and "quads", short for 4 vertex faces. 
-
-TRI::   Faces made up of 3 vertices, also referred to as triangles
-
-QUAD::  Faces made up of 4 vertices
-
-NGON::  Is a face with 5 or more vertices. Many Blender tools and features rely on the underlying mesh to be made of NGONS and will not work with triangulated faces.
-
-HARD SURFACE MODELING:: A generalized term for modeling objects that represent things like vehicles, buildings, weapons, roads. These make use of the more standard mesh techniques and objects like cube, cylinder, plane, cone, torus etc.
-
-NORMAL:: A Normal is a vector in 3D-space that is perpendicular to two other vectors (determined by two edges of a face)footnote:[See Wiki https://en.wikipedia.org/wiki/Normal_(geometry) ] A Normal controls the facing direction of applied textures.
-
-ORGANIC MODELING:: Modeling techniques that use a more sculpted approach for things like animals, people, plants, trees, and even automobiles. There are specialized modeling tools and techniques for this including _SURFACE NURBS_ (Non-uniform rational basis spline, Google it ) and the Sculpting tab in Blender. Blender's Sculpting modes are used for organic modeling and will not be discussed in this document.
-
-UV::    UV is the 3D modeling process of projecting a 2D image to a 3D model's surface for texture mapping. The letters "U" and "V" denote the axes of the 2D texture because "X", "Y", and "Z" are already used to denote the axes of the 3D object in model space, while "W" (in addition to XYZ) is used in calculating quaternion rotations, a common operation in computer graphics.
-
-MANIFOLD SHAPE::   A manifold shape is a 3d object that considered to be water tight.  The vertices, faces and edges are aligned and connected in such a way that if you poured water into to the INSIDE of the object, none would leak out.  A default `cube` primitive is an example a manifold shape. 
-
-ENG FILE:: A file that describes to the Simulator the details of an Asset to be used as an ENGINE within {OR}. It contains physical details such as Motive and Braking values as well as Coupler type, etc.  
-
-SHAPE:: A three dimensional object that is finished in all aspects and ready to be placed within the game environment.
-
-ORIGIN:: See Pivot Point
-
-PIVOT POINT:: A position used to align the shape to its environment, also known as its origin.
-
-HIERARCHY:: The assignment of parenting of objects within a shape so that an objects children will only move when they do but they can move independently too but are always affected by their parent.
-
-MATERIAL:: A material is assigned a texture with additional components such as lighting palette and shading.
-
-SMOOTHING:: A smoothing group is a shade value that allows individual polygons to be lit by the game environment in different ways.
-
-DISTANCE LEVELS:: A range of shapes originating from the one main shape allowing polygon count to be kept low at further viewing distances.  Often referred to as Level of Detail, or LOD.
-
-LEVEL OF DETAIL:: (LOD) Distance values at which the base model is replaced by reduced poly count shapes to account for the inability to see details at a distance.  Higher values should have less detailed models.  There are no hard rules about LOD ranges, but you should try to use them.
-
-WAG FILE:: A file that describes to the Simulator the details of an Asset to be used as an WAGON within {OR}. It contains physical details such as Braking values as well as Coupler type, etc.  
-
-HDRI:: HDRI is short for High Dynamic Range Image. Digital cameras only have a limited dynamic range — that's why some areas of a photo appear darker than they do in real life. HDRIs give photo editors a chance to brighten the corners and create an image that looks more natural.  Environment maps or HDRI maps are one of the most efficient and quickest way to light your 3D scene and achieve realistic results in Blender. HDRIs are essentially a snapshot of the the real world lighting which contain accurate lighting detail through high dynamic range imaging (HDRI)
+ALPHA	::	 A bit map with a portion of the image that is masked-out, making the location appear see-though in the image.		
+DISTANCE LEVELS	::	 A range of shapes originating from the one main shape allowing polygon count to be kept low at further viewing distances.  Often referred to as Level of Detail, or LOD.		
+EDGE	::	  A line created by the linking of 2 vertices ( known as a "2-dimensional object")		
+ENG FILE	::	 A file that describes to the Simulator the details of an Asset to be used as an ENGINE within {OR}. It contains physical details such as Motive and Braking values as well as Coupler type, etc.  		
+FACE	::	  A surface created by 3 or more vertices.		
+HARD SURFACE MODELING	::	 A generalized term for modeling objects that represent things like vehicles, buildings, weapons, roads. These make use of the more standard mesh techniques and objects like cube, cylinder, plane, cone, torus etc.		
+HDRI	::	 HDRI is short for High Dynamic Range Image. Digital cameras only have a limited dynamic range â€” that's why some areas of a photo appear darker than they do in real life. HDRIs give photo editors a chance to brighten the corners and create an image that looks more natural.  Environment maps or HDRI maps are one of the most efficient and quickest way to light your 3D scene and achieve realistic results in Blender. HDRIs are essentially a snapshot of the the real world lighting which contain accurate lighting detail through high dynamic range imaging (HDRI)		
+HIERARCHY	::	 The assignment of parenting of objects within a shape so that an objects children will only move when they do but they can move independently too but are always affected by their parent.		
+LEVEL OF DETAIL	::	 (LOD) Distance values at which the base model is replaced by reduced poly count shapes to account for the inability to see details at a distance.  Higher values should have less detailed models.  There are no hard rules about LOD ranges, but you should try to use them.		
+MANIFOLD SHAPE	::	   A manifold shape is a 3d object that considered to be water tight.  The vertices, faces and edges are aligned and connected in such a way that if you poured water into to the INSIDE of the object, none would leak out.  A default `cube` primitive is an example a manifold shape. 		
+MATERIAL	::	 A material is assigned a texture with additional components such as lighting palette and shading.		
+MESH	::	  A 3D Model "shape" made up of 1 or more "faces" without texture		
+NGON	::	  Is a face with 5 or more vertices. Many Blender tools and features rely on the underlying mesh to be made of NGONS and will not work with triangulated faces.		
+NORMAL	::	 A Normal is a vector in 3D-space that is perpendicular to two other vectors (determined by two edges of a face)footnote	[See Wiki https	//en.wikipedia.org/wiki/Normal_(geometry) ] A Normal controls the facing direction of applied textures.
+OBJECT	::	  A 2-dimensional object has length and height, but no depth. Examples of 2D objects are planes, polygons and lines. A 3-dimensional object has length, height, and depth. Examples of 3D objects are cubes and spheres.		
+ORGANIC MODELING	::	 Modeling techniques that use a more sculpted approach for things like animals, people, plants, trees, and even automobiles. There are specialized modeling tools and techniques for this including _SURFACE NURBS_ (Non-uniform rational basis spline, Google it ) and the Sculpting tab in Blender. Blender's Sculpting modes are used for organic modeling and will not be discussed in this document.		
+ORIGIN	::	 See Pivot Point		
+PIVOT POINT	::	 A position used to align the shape to its environment, also known as its origin.		
+POLY COUNT	::	  The "poly count" is a total of the number of "polygons" used to create a 3d mesh. A polygon is made up of vertices. It is used as an indicator of how complex a model is.		
+POLYGON	::	    Refers to the planar face of this closed shape, edges are the straight edges that define it, and points/vertices are where those various edges connect with one another. Blender calls these "tris", short for faces made of triangles and "quads", short for 4 vertex faces. 		
+QUAD	::	  Faces made up of 4 vertices		
+SHAPE	::	 A three dimensional object that is finished in all aspects and ready to be placed within the game environment.		
+SMOOTHING	::	 A smoothing group is a shade value that allows individual polygons to be lit by the game environment in different ways.		
+TRI	::	   Faces made up of 3 vertices, also referred to as triangles		
+UV	::	    UV is the 3D modeling process of projecting a 2D image to a 3D model's surface for texture mapping. The letters "U" and "V" denote the axes of the 2D texture because "X", "Y", and "Z" are already used to denote the axes of the 3D object in model space, while "W" (in addition to XYZ) is used in calculating quaternion rotations, a common operation in computer graphics.		
+VERTEX	::	    (Plural = vertices ) a point in 3d space with x,y,z coordinates, often used as part of a location where edges and faces meet.  		
+WAG FILE	::	 A file that describes to the Simulator the details of an Asset to be used as an WAGON within {OR}. It contains physical details such as Braking values as well as Coupler type, etc.  		
 
 === Content Generation Involves:
  
@@ -102,6 +77,7 @@ In 2002, I started using 3D Software to create content for games, primarily for 
 ==== Why You Should Use Blender
 
 Blender is free. With the open community supporting Blender as well as there being a large collection of handy addons, it gives you a wide range of possibilities to customize your Blender workspace and workflow.  While some add-ons are not free, most are reasonably affordable, with some paid add-ons on sale as low as $1.  
+(((Blender, "Free 3D Graphics Program")))
 
 To export your model for using in MSTS or ORTS, Wayne Campbell created a very capable exporter for MSTS format `.s` files.
 
@@ -115,19 +91,23 @@ To export your model for using in MSTS or ORTS, Wayne Campbell created a very ca
 
 [NOTE] 
 CONTEXT is an abandoned editor, but it has a syntax highlighter for ENG and WAG configuration files available at steam4me.com website. There is an early version of a context highlighter in the works for ENG/WAG files in VScode, but I've not finished it yet.  https://github.com/pwillard/engwag
+(((Context, "An old but useful text editor")))
 
 === How to Install Blender
 
 According to the Blender.org website, a new version is released about once per quarter.  I'm going to assume you are installing Blender on a Windows 64 BIT platform.  I would recommend that you download the `LTS` or Long Term Support version and if you are really brave, you can download the latest available stable version. 
+(((Blender, "Installation")))
 
 [TIP]
 While Blender CAN run from a USB stick in a portable mode, it's best to just use the MSI installer.
 
 [WARNING]
 If you are still using Windows 7, you won't be able to install a Blender version 2.93 or newer.  You really should upgrade.
+(((Windows 7, No longer supported)))
 
 [WARNING]
 If you install Blender for FREE from STEAM, the STEAM Library interface will auto-update to the latest version of Blender for you by default.  You may not like this behavior so you are warned.
+(((Blender, "Installed via Steam")))
 
 [NOTE]
 Between each version update, the Blender developers might move some user interface features around a bit.  You might not see the same screens shown in the examples included in this document.
@@ -135,6 +115,7 @@ Between each version update, the Blender developers might move some user interfa
 Let's use the Blender installer from the *Blender.org* website. https://Blender.org/download/
 
 The LTS version will be a link on the page referred to on the "Looking for Long-Term Support? Get {version}".  It can be found here:  https://www.Blender.org/download/lts
+(((Blender, "Long Term release, LTS")))
 
 image:images/LTS.PNG[]
 
@@ -151,6 +132,7 @@ The APPDATA folder is normally a hidden folder in your windows File Explorer.  Y
 
 According to Windows POWERSHELL on *my system*, the %APPDATA% Environment variable points to: 
 
+[.listing]
 ----
 PS C:\Users\willard> $env:APPDATA
 C:\Users\willard\AppData\Roaming
@@ -165,7 +147,7 @@ in other words, my config files and addons are located at +
 `C:\Users\willard\AppData\Roaming\Blender Foundation\Blender\3.3\config`   
 
 Below is an old video link, but you will get the general idea of how to install and initially configure Blender...  These steps are also contained below.
-
+(((Blender, "Installation Video")))
 Video Link: https://youtu.be/ad4vTwCGodo
 
 <<<<
@@ -173,6 +155,7 @@ Video Link: https://youtu.be/ad4vTwCGodo
 === Setting up our Blender Environment
 
 There are some post installation steps we will follow to customize Blender for the kind of work we will be doing.  We will start on the main one-time setup splash screen where we will make one change.  We will change the kbd:[SPACEBAR] key to perform a `SEARCH` instead of `PLAY ANIMATION`.
+(((Blender, "Setup")))
 
 image::images/START1.PNG[align=center]
 
@@ -208,7 +191,7 @@ At the bottom of this menu, you can adjust the VERTEX sizes to make them more vi
 
 ==== Viewport
 
-For better render results, you might want to adjust these values in the menu:VIEWPORT[QUALITY] section:
+For better viewscreen visual results, you might want to adjust these values in the menu:VIEWPORT[QUALITY] section:
 
 * SAMPLES = 16
 
@@ -267,7 +250,7 @@ In the menu:FILE PATHS[DATA] section:
 In the menu:FILE PATHS[Asset Libraries] section:
 
 * This setting will default to  %USERPROFILE%/DOCUMENTS/Blender/ASSETS
-* If you would like to have multiple ASSET library sections, you would btn:[RMB] the btn:[+] symbol on the bottom right of the "Asset Libraries" window to add a new ASSET Folder(s) to the list.
+* If you would like to have multiple ASSET library sections, you would btn:[LMB] click on the kbd:[+] symbol on the bottom right of the "Asset Libraries" window to add a new ASSET Folder(s) to the list.
 
 You will see that I have renamed the default "user" location's name to be "FREIGHT" and changed the folder location it references and I also added an additional library folder for ENGINE related library objects.
 
@@ -289,6 +272,8 @@ Various libraries can be selected using the menu options on the  left.
 image::images/ADD-ON.PNG[align=center]
 
 In the menu:ADD-ONS[OFFICIAL + COMMUNITY] section:
+
+(((Blender, "Add-Ons")))
 
 The Add-ons section lets you manage secondary scripts, called “Add-ons” that extend Blender's functionality. In this section you can search, install, enable and disable Add-ons. Blender comes with some useful Add-ons built-in that are ready to be enabled. You can also develop and add your own, or install any of the ones you might find on the web.
 
@@ -341,8 +326,9 @@ Automirror:: A quick and easy object mirroring tool with multiple options. A bit
 
 ===== 3rd Party Add-Ons
 
-We will initially start with some freely available 3rd Party add-ons that we will want to have, including one optional one if you plan to model for Dovetail Games Train Simulator.
+We will initially start with some freely available 3rd Party add-ons from the Blender community that we will want to have, including one optional one if you plan to model for Dovetail Games Train Simulator.
 
+(((Blender, "Community Add-ons")))
 
 [cols="1,3,3"]
 |===
@@ -353,7 +339,7 @@ We will initially start with some freely available 3rd Party add-ons that we wil
 | Optional: Briage28 | Available From: http://jujumatic.free.fr/Files/BRIAGE_G//BRIAGE_G_2.83Pckg_3-1-412.7z  | Train/Rail Simulator Export if you also have this simulator (Dovetail Games) 
 |===
 
-Note: These are free but some of the add-ons that we might want to install later might be paid add-ons.
+Note: These are free add-ons, but some of the add-ons that you could want to install later might be add-ons you would need to pay for.
 
 There are hundreds of add-ons that are not distributed with Blender and are developed by others. To add them to the list of availble add-ons, they must be installed into Blender.
 
@@ -378,12 +364,12 @@ image::images/PREFS10.PNG[align=center]
 Define your default output resolution as 2048x2048 since we will generally be working with square textures.
 
 
-====  GIZMO settings
+====  Gismo settings
 
 [TIP]
 Below is a change that is very related to your personal preference, so it is optional.  Some feel this creates a messy window.
 
-In the Layout window there is the GIZMOS Drop Down menu. (Look for an arc with an arrow icon) You can enable the MOVE option with a check-box.  This will give you AXIS based MOVE arrows that you can grab to assist with moveing an object around your scene. (Or you can just use the "G" key options.)
+In the Layout window there is the GIZMOS Drop Down menu. (Look for an arc with an arrow icon) You can enable the MOVE option with a check-box.  This will give you AXIS based MOVE arrows that you can grab to assist with moving an object around your scene. (Or you can just use the "G" key options.)
 
 ==== Overlays
 
@@ -395,6 +381,9 @@ An option in Overlays that you might want enabled is `Statistics` at it will hel
 Below is a change that is also very related to your personal preference so it is optional.  Some feel this creates a *really* messy edit window on complex shapes.
 
 Under Overlays (Select the default cube and change to `EDIT MODE` using kbd:[TAB]. If there is no default cube, then use menu:Add[Mesh > Cube] to place a cube in the scene and go to EDIT mode using kbd:[TAB].)  In the `OVERLAYS` drop down, enable the `EDGE LENGTH` check-box.  This will show the actual edge unit lengths of selected objects when you have and edge or edges selected. 
+
+
+<<<<
 
 ==== Shading Settings  
 
@@ -414,10 +403,12 @@ I also choose MATCAP and pick the leftmost MAPCAP option for better visual repre
 
 image::images/PREFS11.PNG[align=center]
 
+(((Blender, "Units, Feet, Meters, Metric, Imperial")))
+
 If you need to work in Imperial Units versus Metric, you would adjust the setting under the UNITS SYSTEM option in Scene Properties.  
 
 [IMPORTANT]
-Changes to `UNIT` settings can have effects in other areas, such as Camera View settings related to  `Focal Length`, `Clip Start` and `Clip End`. Set in the _N-Panel_ under `View`.
+Changes to `UNIT` settings can have effects in other areas, such as Camera View settings related to  `Focal Length`, `Clip Start` and `Clip End`. To adjust these values aftsr changing UNITS settings, use the _N-Panel_ `View` tab to make adjustments.
 
 <<<<
 
@@ -487,6 +478,8 @@ The layout of your project development folder is completely personal depending o
 
 image::images/folder2.JPG[]
 
+(((Project, "Folder Layout")))
+
 
 
 [NOTE]
@@ -501,6 +494,8 @@ I snipped a lot of details out for brevity and left some in as examples.  EXPORT
 == Content Creation Overview
 
 The information presented below is not specifically about modeling with Blender, it is about how to create items that comply with the simulator requirements and guidelines.  Some references to my old 3DC notes are included here.
+
+(((Content Creation, "Basic Overview")))
 
 [TIP]
 Reminder, this is basically a "notebook" and started life as my collection of content creation files.  It may seem to jump around a lot as a reult.
@@ -579,6 +574,8 @@ PANTOGRAPHTOP1
 === Configuration Files
 
 Models of rolling stock and signals can take advantage of a few features which are only available in Open Rails and not MSTS.  Having a good understanding of the new ORTS features, by referring to the {OR} manual, can be helpful in creating more capable and accurate content.  While the current {OR} manual is a bit shy on content creation details, much of the information that is available about Microsoft Train Simulator content creation still applies.
+
+(((Configuration, "Files")))
 
 While I'm not going to create a full guide to `sd`, `ref`,`eng` and `wag`  files here in this document, we will need to create a working file if we plan to add content to {OR}.  Peter Newell's website has an in-depth look into creating good `ENG` and `WAG` files for {OR}.footnote:[https://www.coalstonewcastle.com.au/physics/format/]
 

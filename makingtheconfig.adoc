@@ -1,0 +1,300 @@
+
+== Specifying lights on locomotives and wagons
+
+
+=== Introduction
+To make locomotives and wagons you create for Microsoft Train Simulator, you may use the in-build lighting system to simulate a variety of different kinds of lights, such as headlights, warning lights and ditch lights.  Both computer-controlled and player-driveable trains may use lights.  These lights may be steady or may flash, may change according to certain parameters (such as whether a penalty brake application has been made)  and may even be set to turn on automatically according to the time of day or weather.
+
+Lights are specified as part of a locomotive/wagon’s .eng file (the same file that defines the physical characteristics of the unit, such as its height and weight, and its cab controls).  Essentially, a set of conditions is defined and then lights that should light in this case are listed).  Like all of the hand-editable files in Train Simulator, the .eng file can be edited in any Unicode text editor.
+
+==== Setting requirements 
+The first thing you must specify is when you want the light or lights in question to come on.  This is done by setting a number of flags to define the requirements for the lights concerned to light – if no requirements are listed, the light will always be on.
+
+Possible Requirements
+
+* Headlight (0)  (ignore headlight control status)
+* Headlight (1) (the headlight control is at “Off”)
+* Headlight (2)  (the headlight control is at “Dim”)
+* Headlight (3)  (the headlight control is at “Bright”)
+* -----
+* Unit (0) (ignore unit status)
+* Unit (1) (the unit is in the train but isn’t at the front or back)
+* Unit (2) (the unit is the frontmost unit of the train)
+* Unit (3) (the unit is the rearmost unit of the train)
+* -----
+* Penalty (0) (ignore penalty status)
+* Penalty (1) (the train has not “stopped due to a penalty brake application”)
+* Penalty (2) (penalty) (the train has stopped due to a penalty brake application” (useful for specifying an emergency warning light)
+* -----
+* Control (0) (ignore control status) 
+* Control (1) (the player is not control of the unit [i.e. it is a helper locomotive or wagon) 
+* Control (2) (the player is in control of the unit)
+* -----
+* Service (0) (ignore service status)
+* Service (1) (the unit is not in service e.g. a failed train lying in a siding)
+* Service (2) (the unit is in service)
+* -----
+* TimeOfDay (0) (ignore time of day)
+* TimeOfDay (1) (only come on if it’s daytime)
+* TimeOfDay (2) (only come on if it’s night
+* -----
+* Weather (0) (ignore weather)
+* Weather (1) (only come on if it’s fine)
+* Weather (2) (only come on if it’s raining)
+* Weather (3) (only come on if it’s snowing)
+* -----
+* Coupling (0) (ignore coupling status)
+* Coupling (1) (original front of wagon is coupled)
+* Coupling (2) (original rear of wagon is coupled)
+* Coupling (3) (both ends of wagon are coupled)
+
+
+
+
+
+
+==== Defining lights
+
+Once you have defined a set of requirements, you must list all the lights which you want to light when those requirements are fulfilled.
+
+Type of light:: Two types of lights can be defined in Train Simulator.  
+
+Glow:: Two textured triangles.  Glows are relatively inexpensive in terms of processing time and are perfect for use when you merely wish to show that a light is on rather than off.  They do not affect polygons around them (i.e. they do not “light things up”).
+
+Cone:: A “real” light which has an effect on the polygons around it.  Again, this takes more processing time than a glow and should only be used if you wish to “light something up” as opposed to merely showing a light is on.  Headlights are a suitable use for cone lights – one cone can simulate the light from a bank of headlights, with a glow being used to highlight each individual light if desired.
+
+
+`Type(n) (where n = 0 is glow, n = 1 is cone)`
+
+
+==== Fade-in and Fade-out times
+
+These values simply let you define a number of seconds that the light will take to brighten to the brightness of its current state when it is lit, and the number of seconds it will take to die away when it is switched off.  If you specify 0 for both values, the light will light and darken instantaneously.
+
+`FadeIn(t) (where t is the time in seconds)`
+`FadeOut(t) (where t is the time in seconds)`
+
+
+==== Cycle
+
+If this value is set to 1, the light’s states will be cycled through first forwards, then backwards and so on (e.g. 1, 2, 3, 4, 5, 4, 3, 2, 1, 2, 3, 4…).  If this value is left as 0, the states will be played through in order repeatedly (e.g. 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4…)
+
+`Cycle(n) (where n = 0 is play in order repeatedly, n = 1 is cycle)`
+
+==== States
+
+A light has a number of states – a state is simply the form of the light at a given time.  States can be played through in order repeatedly or made to cycle backwards and forwards (see above).  For example, to define a red flashing light, you would define one state that had the light bright red for 1 second and another that had it off for one second.  When the two states were cycled between, the light would appear to flash.  By altering colours, coordinates and durations of states, you can make lights appear to change colour, move around or flash.
+
+A state is made up of the following values:
+
+* Duration(t) Specifies the duration of this light state where t is the time in seconds.
+
+* Colour(aarrggbb) A 32-bit hexadecimal value specifying the colour and translucency of the
+light.  aa, rr, gg, bb are 8-bit hexadecimal values specifying the translucency (how "solid" the light is - this only affects glows) and red, green and blue colour components of the light colour respectively.  (If you are not familiar with hexadecimal, a brief explanation is included in the appendices of this document).
+
+* Position(x y z) The position offset in Cartesian coordinates from the centre of the unit.
+
+* Radius(r) This is the radius of the light sphere for cone lights and the radius of
+the polygon "disc" for glow lights.
+
+* Azimuth(min centre max) This specifies the heading (rotation about the Y-axis) of glow lights – in the simplest case min, centre and max can all be set to the same angle (in degrees).  For more complex situations where you want to define the arc of the light you can specify for example -45, 0 and 45 degrees respectively to produce a light with a 90 degree arc.  Essentially glow lights attempt to always face the camera but are limited by the azimuth and elevation settings.  The best way to see what the values do is to experiment - set up a light with a set of values and then move the camera around it to see what happens.
+
+* Elevation(min centre max) This specifies the elevation (rotation about the X-axis) of glow lights and (apart from the axis of effect) works identically to the azimuth.
+
+* Transition(n) This specifies how the transition from one state to the next occurs - if n equals zero then the transition is instantaneous, if it is one then the light parameters are interpolated from this state to the next.
+
+* Angle(n) (Cone lights only) the radius of the cone, in degrees.
+
+==== Examples
+
+Here are a few examples, taken from the Dash 9 .eng file.
+
+===== Example 1 – the Dash 9’s front headlights
+
+----
+Lights	(	10
+		Light	(
+			comment( Sphere of light )
+			Type		( 1 )
+			Conditions	(
+				Headlight ( 3 )
+				Unit ( 2 )
+				)
+			Cycle	( 0 )
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			States	(	1
+				State	(
+					Duration ( 0.0 )
+					LightColour ( ffffffff )
+					Position ( 0.0 3.5 18 )
+					Transition ( 0 )
+					Radius ( 400.0 )
+					Angle ( 15.0 )
+					)
+				)
+			)
+		Light	(
+			comment( Head light dim )
+			Type		( 0 )
+			Conditions	(
+				Headlight ( 2 )
+				Unit ( 2 )
+				)
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			Cycle	( 0 )
+			States	(	1
+				State	(
+					Duration ( 0.0 )
+					LightColour ( 80ffffff )
+					Position ( 0.15 3.20 9.679 )
+					Azimuth ( 0.0 -5.0 5.0 )
+					Transition ( 0 )
+					Radius ( 1.0 )
+					)
+				)
+			)
+		Light	(
+			comment( Head light bright )
+			Type		( 0 )
+			Conditions	(
+				Headlight ( 3 )
+				Unit ( 2 )
+				)
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			Cycle	( 0 )
+			States	(	1
+				State	(
+					Duration ( 0.0 )
+					LightColour ( ffffffff )
+					Position ( 0.15 3.20 9.679 )
+					Azimuth ( 0.0 -5.0 5.0 )
+					Transition ( 0 )
+					Radius ( 1.0 )
+					)
+				)
+			)
+		
+Light	(
+			comment( Head light bright )
+			Type		( 0 )
+			Conditions	(
+				Headlight ( 3 )
+				Unit ( 2 )
+				)
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			Cycle		( 0 )
+			States	(	1
+				State	(
+					Duration ( 0.0 )
+					LightColour ( ffffffff )
+					Position ( 0.15 3.20 9.679 )
+					Azimuth ( 0.0 -5.0 5.0 )
+					Transition ( 0 )
+					Radius ( 1.0 )
+					)
+				)
+			)
+
+----
+
+
+===== Example 2 – the Dash 9’s front right flashing (ditch) light.
+
+----
+Light	(
+			comment( Front right flashing light )
+			Type		( 0 )
+			Conditions	(
+				Headlight ( 3 )
+				Unit ( 2 )
+				)
+			Cycle	( 0 )
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			States	(	2
+				State	(
+					Duration ( 0.3 )
+					LightColour ( ffffffff )
+					Position ( -0.60932 1.98713 10.600 )
+					Azimuth ( 0 -17.0 -17.0 )
+					Transition ( 0 )
+					Radius ( 1.5 )
+					)
+				State	(
+					Duration ( 0.3 )
+					LightColour ( 00000000 )
+					Position ( -0.60932 1.98713 10.600 )
+					Azimuth ( 0 -17.0 -17.0 )
+					Transition ( 0 )
+					Radius ( 1.5 )
+					)
+
+				)
+			)
+----
+
+===== Example 3 – the Dash 9’s rear red light
+----
+		Light	(
+			comment( Rear red light )
+			Type		( 0 )
+			Conditions	(
+				Headlight ( 3 )
+				Unit ( 2 )
+				)
+			FadeIn	( 0.5 )
+			FadeOut	( 0.5 )
+			Cycle	( 0 )
+			States	(	1
+				State	(
+					Duration ( 0.0 )
+					LightColour ( 80ff0000 )
+					Position ( 0.98651 2.12618 -10.677706 )
+					Azimuth ( -180 -180 -180 )
+					Transition ( 0 )
+					Radius ( 0.5 )
+					)
+				)
+			)
+
+		)
+----
+
+=== A brief explanation of hexadecimal numbers
+
+Hexadecimal is a base 16 counting system used by computers.  Humans generally use base 10.  In base 10, we have a units column, a tens column, a hundreds (ten squared) column, etc. and numbers can be described by specifying a value for each column.  
+
+For example, 57 has 5 in the tens column and 7 in the units column and (5 * 10) + 7 * 1 = 57.  
+
+In base 16 you have a units column, a sixteens column, a 256s (16 squared) column, etc.  The extra
+digits are A to F so you count in hex like this : 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10 in decimal), B (11 in decimal), C (12), D (13), E (14), F (15), 10 (remember this is hex so that's one in the 16s column and zero in the units column giving you 16).  
+
+Another example the hex number 4D is 4 in the 16s column and D in the units column, but D is 13 so that’s (4 * 16) + (13 * 1) =64 + 13 = 77.
+
+In the case of lights, hexadecimal values are used to set an alpha, red, green and blue value for a light.  Each value is set by a two-digit hexadecimal number, so can be anything between 00 (zero) and FF (F in the 16s column and F in the units column, so since F=15 that’s (15*16) + (15*1) = 240 + 15 = 255).  So a two-digit hexadecimal number can be anything between 0 and 255, i.e. there are 256 possible values.
+
+Therefore the following setting:
+
+`0000FF00`
+
+…would result in a light that has no alpha (i.e. it’s completely “transparent”), no red, full green and no blue.  The result would be a transparent green light.
+
+A more realistic example is:
+
+`80ff0000`
+
+The first two values (80) control the alpha. 80 = 8*16 = 128, so this light will be half-alphaed, or semi-transparent.
+The two red values are set to ff (255, as explained above) so the light’s red value is at maximum.  Since the green and blue values are set to 00, the light will be bright red (if they were set to ff as well, the colours would combine together to form a bright white light).
+
+One final example.  The value:
+
+`60808000`
+
+Would result in a yellow, slightly more than half transparent (i.e. more transparent than the red light above) yellow light.
+
+
+
