@@ -12,7 +12,7 @@ I just wanted to see what what a Content Creation Notebok for OPEN RAILS could l
 
 ## Install Ruby
 
-Have the RUBY programming language installed. Latest version is 2.5 as of this writing.   https://rubyinstaller.org/
+Have the RUBY programming language installed.   https://rubyinstaller.org/
 
 ## Install AsciiDoctor - pre-release
 
@@ -30,20 +30,12 @@ Install the diagram tool with the following command: `gem install asciidoctor-di
 
 I use the following command to create the PDF document output:
 
-`call asciidoctor-pdf --trace -r asciidoctor-diagram -a pdf-style=resources/pdfstyles/screen-theme.yml -a pdf-fontsdir=fonts book.adoc`
+
+asciidoctor-pdf -r asciidoctor-diagram -a pdf-themesdir=themes -a pdf-theme=test -a pdf-fontsdir=fonts book.adoc -o notebook.pdf
 
 NOTE: ASCIIDOCTOR formatting code is ALMOST github compatible...  so GITHUB tries to render it... (It just doesn't really work)
 
 
-Script
-
-`@echo Started: %date% %time%`
-`call asciidoctor-pdf -a pdf-style=resources/pdfstyles/screen-theme.yml -a pdf-fontsdir=fonts book.adoc -o ORTS-CC-Notebook.pdf`
-`@echo Ended: %date% %time% `
-`rem asciidoctor-pdf  book.adoc`
-`if exist *.png (`
-`    rm *.png`
-`)`
-
+You can use the script `do.bat` to convert the document to PDF
 
 
