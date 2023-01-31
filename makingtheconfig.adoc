@@ -3,7 +3,7 @@
 
 
 === Introduction
-To make locomotives and wagons you create for Microsoft Train Simulator, you may use the in-build lighting system to simulate a variety of different kinds of lights, such as headlights, warning lights and ditch lights.  Both computer-controlled and player-driveable trains may use lights.  These lights may be steady or may flash, may change according to certain parameters (such as whether a penalty brake application has been made)  and may even be set to turn on automatically according to the time of day or weather.
+In Microsoft Train Simulator, you can use the in-built lighting system to create a variety of lights for locomotives and wagons, including headlights, warning lights, and ditch lights. These lights can be used on both computer-controlled and player-driveable trains. The lights can be set to be steady or flashing, and can also be programmed to change based on certain parameters, such as a penalty brake application, or to turn on automatically based on the time of day or weather.
 
 Lights are specified as part of a locomotive/wagon’s .eng file (the same file that defines the physical characteristics of the unit, such as its height and weight, and its cab controls).  Essentially, a set of conditions is defined and then lights that should light in this case are listed).  Like all of the hand-editable files in Train Simulator, the .eng file can be edited in any Unicode text editor.
 

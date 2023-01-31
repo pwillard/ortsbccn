@@ -32,6 +32,7 @@
 :bslash: \
 :BL: {
 :BR: }
+:AO: Ambient Occlusion
 :sourcedir: code
 :source-highlighter: rouge
 :revnumber: 0.1.0
@@ -40,6 +41,7 @@
 :ORTS: Open Rails Train Simulator
 :MSTS: Microsoft Train Simulator
 :version: Blender 3.3 LTS
+:AO: Ambient Occlusion
 
 
 <<<
@@ -59,15 +61,11 @@ image::images/CC-BY-SA.svg[width=87,height=30,align=center]
 
 == About This Document
 
-This is a first attempt at a guide to using Blender with Open Rails for content creation.   For this document, the {version} version of Blender 2.8 should be the minimum release used. Older versions of Blender will not be shown or used. It is recommended to use the latest Long Term Support (LTS) release for maximum compatability with what is shared in this document.
+This guide covers the use of {version} or higher for creating content for Open Rails. It is recommended to use the latest Long Term Support (LTS) release of Blender for the best compatibility with the instructions provided in this document. Please note that older versions of Blender will not be covered or supported in this guide.
 
 === About The Author
 
-I am not an expert.  I can best be described as a curious user and occasional content creator. I've been an eternal novice with regards to content creation in general and there are going to be things that I still don't understand sufficiently.
-
-From 2002 until 2016, all of my 3rd party content releases have been for Microsoft Train Simulator using 3DCanvas.  It was ultimately renamed to 3D Crafter and is now effectively abandonded by its creator.
-
-With regards to Blender, I started with versions that were released before version 2.8 and it didn't feel very user-friendly  to me. Due to the unusual and cumbersome nature of the earlier Blender user interface, I also didn't get very far with it.  When version 2.8 arrived, it was still difficult to get started but it was a vast improvement from a user interface point of view.  I don’t think I will switch to a different 3D modeling tool anytime soon. 
+The individual who intially wrote this guide is not an expert in content creation and has mostly used 3DCanvas/3D Crafter for creating content for Microsoft Train Simulator from 2002 to 2016. They have also experimented with Blender, but found earlier versions difficult to use due to its cumbersome user interface. However, they found Blender 2.8 to be a vast improvement in terms of user interface and do not plan to switch to a different 3D modeling tool in the near future.
 
 
 
@@ -166,6 +164,7 @@ Due to the way this document originated, it may seem to jump around and be repet
 include::makingcontent.adoc[]
 include::makingthemesh.adoc[]
 include::makingtheconfig.adoc[]
+include::makingtextures.adoc[]
 
 [index]
 == Index

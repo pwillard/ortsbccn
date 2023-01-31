@@ -6,7 +6,9 @@
 
 Scale:: {ORTS} as well as {MSTS} each use a scale of 1:1, that is, 1 unit in the 3D drawing area is 1 meter in the simulator and this means all things are in real-world measurements. 
  
-3D Space::  According to *Blender's view of the world*,  `-X` value is left, `+Z` value is up and a `-Y` value is the front side of the object. The "ground" level is where `Z`=0  
+3D Space::  According to *Blender's view of the world*,  `-X` value is left, `+Z` value is up and a `-Y` value is the front side of the object. The "ground" level is where `Z`=0 
+
+Material:: In Blender, a material is a set of properties that defines how a surface appears when it is rendered. Materials can include information about the surface's color, texture, reflectivity, transparency, and other visual characteristics.
 
 
 [WARNING]
@@ -24,7 +26,7 @@ While you _can_ have Blender work in Imperial units (feet and inches), I find it
 
 Some recommendations From Erick Cantu of NAVS
 
-1. You should strive to keep the poly count down even though its a lot less critical in {OR}.  While it is nice that modern PC's and simulator software have gotten much better about handling complex models and textures, it doesn't mean go hog wild.  Use complexity where complexity counts. In Blender, you can see these details such as vertex and poly count in the lower right of the screen in `Object EDIT MODE`.  You should avoid keeping faces and edges that will Seldom or never be seen in the model.
+1. In {OR}, it is important to try to keep the polygon count of your models low, even though it is not as critical as in some other applications. While modern PCs and simulator software have improved in their ability to handle complex models and textures, it is still important to use complexity wisely. In Blender, you can view the polygon count and other details of your model by going to Object EDIT MODE and looking at the lower right corner of the screen. When creating your models, try to avoid including faces and edges that will rarely or never be visible in the final model.
 
 2. Keep the texture files (that will eventually be included with your final model) to a minimum and use as much of the allotted texture as you can.  Each texture creates a fresh API call (state change) to a new group versus being able to batch calls together to a single texture.
 
@@ -50,7 +52,7 @@ For large panels, though, a minimal amount of modeling is necessary. A flat plat
 
 === Background Images
 
-There is something to keep in mind  when using drawings and plans as background reference images. Many scanned images that you will find on the web will have errors.  Old plans used by manufacturers are often huge (Nearly 1 meter wide) and these all need to be reduced to fit on scanners and screens.  Newer plans that are made with computer cad systems tend to be a bit more accurate as well as being bit smaller but these are rare unless you are using hobby magazines articles. Some might even be stored as vectors which makes them scalable (maybe you will get lucky). 
+It is important to note that many scanned images of drawings and plans that can be found online may contain errors, as they are often reduced in size to fit on scanners and screens. Older plans, which are often very large (nearly one meter wide), are particularly prone to this issue. Plans created using computer-aided design systems tend to be more accurate and smaller in size, but these are less common and may only be found in hobby magazine articles. Some plans may also be stored as vectors, which allows them to be scaled without loss of quality. Keep these limitations in mind when using background reference images.
 
 Original Plans:: There are web sites online that will sell you scans of original plans.  These are often related Railroad Historical Society websites.  Unfortunately, there are large images and often quite costly.  Example: https://www.nwhs.org/archivesdb/
 
@@ -116,6 +118,30 @@ Since this is really just a set of preset shapes with customizable values and lo
 image:images/Result.PNG[]
 
 Using this plugin with 3D Canvas we haven't even started modelling yet and we have a number of things in place.  In Blender, however we are going to have to create all of this by ourselves.
+
+
+[TIP]
+====
+Something we could do with 3D Canvas  was  to enable "render 2-side faces" and it is not very clear how to do that with Blender. So, let me explain: 
+
+To create a double-sided plane in Blender, you can use the following steps:
+
+1) Start by creating a new plane in Blender. You can do this by going to the "Add" menu in the 3D View and selecting "Mesh" > "Plane".
+
+2) With the plane selected, go to the "Object" menu in the Properties panel and enable the "Double Sided" option. This will cause the plane to be visible from both sides.
+
+Alternatively, you can use a Solidify modifier to add thickness to the plane and make it double-sided. To do this, select the plane: 
+
+1) Go to the "Modifiers" tab in the Properties panel. 
+
+2) Then, click the "Add Modifier" button and choose "Solidify". 
+
+3) In the Solidify settings, you can adjust the thickness of the plane.
+
+If you want to apply the Solidify modifier permanently to the plane, you can do so by clicking the "Apply" button. This will apply the Solidify modifier to the plane and make it double-sided.
+
+====
+
 
 <<<
 
@@ -602,6 +628,15 @@ image:images/unwrap0.png[]
 
 * Give your model a new material. In the `PROPERTIES` window on the right side, locate the sphere with a grid inside it near the bottom of the Properties window.  That is the material panel. 
 
+[TIP]
+====
+To create a material in Blender, you can use the Material tab in the Properties panel. In the Material tab, you can specify the material's color and texture, as well as adjust its properties such as specular intensity, roughness, and transparency. You can also use the Shader editor to create more complex materials using nodes.
+
+Once you have created a material, you can apply it to an object in your scene by selecting the object and then clicking the "Assign" button in the Material tab. The material will be applied to the surface of the object, and will be used to determine how the object appears when it is rendered.
+
+Materials are an important part of creating realistic and visually appealing 3D scenes in Blender, as they allow you to control the appearance of objects and surfaces in your scene
+====
+
 * Your object likely received a default empty material. Let's update it.  Under `SURFACE PROPERTIES`, Click the small circle on the left side of the `BASE COLOR` field.  You will get a list of options.   
 
 * Choose  `Image Texture` and we will thhen locate the Concrete texture we will use. (You can create your own or use the one I created for this)  You should have some texture file ready in advance.
@@ -1054,12 +1089,33 @@ image:images/door3.PNG[]
 
 When Baking Ambient Occlusion, Here are some tips:
 
-1. Gather parts that will receive AO into a collection to make them easy to select.
+1. Gather parts that will receive{AO} into a collection to make them easy to select.
 2. Ensure the UV Maps for those parts do not wrap off the edge of the texture sheet.
 3. Coplanar surfaces are a problem, including two sided, they bake black.
 4. Set 'Render Engine' to Cycles.
 5. Set Render Max Samples low eg 8, for testing, high for better quality , eg 128, 256 etc
 6. If your model has secondary LOD's ensure they don't cast a shadow on your primary model, use 'Disable In Render' in the outliner
+
+=== Ambient Occlusion Steps
+
+To bake {AO} in Blender, you can use the Bake tool in the Render tab of the Properties panel. Here's a step-by-step guide:
+
+* Select the object or objects that you want to bake the{AO} for.
+* In the Properties panel, go to the Render tab and then click on the Bake tab.
+* In the Bake tab, set the Bake Mode to Ambient Occlusion.
+* Set the Samples value to the number of samples you want to use for the{AO} bake. The higher the value, the more accurate the{AO} will be, but the longer the bake will take.
+* Set the Margin value to add a margin around the baked texture to prevent texture bleeding.
+* Set the Space to either "Object" or "World" depending on whether you want the{AO} to be baked in object space or world space.
+* Check the "Clear" box to clear the image before baking.
+* Check the "Normalized" box to normalize the{AO} values, which can help with artifacts and banding.
+* Click the "Bake" button to start the{AO} bake.
+
+[Note] 
+The{AO} bake can take some time, depending on the complexity of the objects and the number of samples you are using. Once the bake is complete, the{AO} map will be saved as an image in the UV/Image Editor. You can then use this image as a texture to apply the{AO} effect to your object.
+
+
+
+
 
 
 

@@ -347,6 +347,11 @@ To install these, choose the btn:[Install…] button and use the `File Browser` 
 
 You will then have the option to enable to disable the installed add-on using the check-box.
 
+[TIP]
+----
+From Marek at ELvas Tower: I have been using the free BlenderKit add-on recently. It's enabled via Preferences>Add-on. BlenderKit has over 5000 materials and ones like rubber, metal, plastic come in handy for rolling stock texturing. I found a checker plate procedural material that I applied to the walkway sections of my model below. Because it's procedural you can scale the checker without loosing image quality. I guessed at the scale and then rendered the image using the top down camera I had used to render the AO. I then edited the resultant render image to remove the roof and other details so only the walkway was left and placed in on the texture file in GIMP. Because the scale of the orthographic camera did not change compared to the AO everything was lined up. Blended with the AO layer below and the subtle shading its light years ahead of what I have been able to achieve in the past. And this was just the first try as a test that I spent about 20 minutes on. The render engine in Blender, along with 3D texture painting are tools that texture artists should look at as additional tools at their disposal.
+----
+
 ==== Exit and Save Preferences
 
 Exiting (closing) the menu:EDIT[PREFERENCES] section will save your changes. By default, it automatically saves your changes unless you have unchecked `Autosave Preferences` in the _hambuger_ menu at the bottom of the *Preferences* window.
@@ -573,8 +578,7 @@ PANTOGRAPHTOP1
 
 === Configuration Files
 
-Models of rolling stock and signals can take advantage of a few features which are only available in Open Rails and not MSTS.  Having a good understanding of the new ORTS features, by referring to the {OR} manual, can be helpful in creating more capable and accurate content.  While the current {OR} manual is a bit shy on content creation details, much of the information that is available about Microsoft Train Simulator content creation still applies.
-
+The Open Rails (OR) manual provides a good understanding of the features only available in Open Rails, which can be used to create more capable and accurate content. Although the current manual is lacking in content creation details, much of the information available for Microsoft Train Simulator content creation still applies.
 (((Configuration, "Files")))
 
 While I'm not going to create a full guide to `sd`, `ref`,`eng` and `wag`  files here in this document, we will need to create a working file if we plan to add content to {OR}.  Peter Newell's website has an in-depth look into creating good `ENG` and `WAG` files for {OR}.footnote:[https://www.coalstonewcastle.com.au/physics/format/]
@@ -587,9 +591,9 @@ An interesting discussion occurred in 2017 about making these files better and m
 
 [quote, Erick Cantu, 20 November 2017 ]
 _____
-For better and worse, KUJU defined all of the folder names we use in MSTS. With the development of the Include file concept (as applied to .engs and .wags) I concluded that something very much like KUJU's \common.cab directory tree was needed for .inc files. Using the examples of how payware vendors made use of folders in \trains I saw that sometimes they used \common.cab, sometimes they used a folder specific to their own product folder, and sometimes they used something "in between" -- a vendor named folder named for the unskined mesh (e.g., 3DTrains_FPack).
+KUJU, an organization, defined all of the folder names we use in MSTS. The Include file concept, as applied to .engs and .wags, led me to conclude that something similar to KUJU's \common.cab directory tree was necessary for .inc files. By looking at how payware vendors used folders in \trains, I noticed that they sometimes used \common.cab, other times a product-specific folder, and occasionally something in between, such as a vendor-named folder for the unskinned mesh (e.g., 3DTrains_FPack).
 
-IMO KUJU's example of a CAB file, you will see a good template for locating the "include" files. After much experimentation I'm proposing am solution that addresses these needs:
+In KUJU's example of a CAB file, you will see a good template for locating the "include" files. After much experimentation I'm proposing am solution that addresses these needs:
 
 * A folder for shared .inc files, much like what is in \common.cab.
 Recognition that many end-users have routes and equipment from many countries and therefore it might be useful to group certain files for each country.
